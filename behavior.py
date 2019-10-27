@@ -33,13 +33,12 @@ class Behavior:
         self.active_flag = True
         self.sense_and_act()
         self.weight = self.priority * self.match_degree
-        pass
 
     def sense_and_act(self):
         #Gather information from used senobs and Bbcon
         #and determine a recommendation
         print("Gathering information form senobs and computing recommendation (Here: (1, 1)")
-        recommendation = (0, 0)
+        recommendation = (1, 1)
         self.motor_recommendation = recommendation
         print("Compute match degree (set to 1 here)")
         self.match_degree = 1
