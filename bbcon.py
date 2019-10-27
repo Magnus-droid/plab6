@@ -9,6 +9,7 @@ class bbcon:
         self.metobs = []
         self.arbitrator = None
 
+
     def add_behavior(self, bhv):
         """Legger til oppførsel til behaviors"""
         self.behaviors.append(bhv)
