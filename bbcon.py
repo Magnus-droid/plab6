@@ -2,7 +2,8 @@ from sensob import sensob
 from motob import motob
 
 
-class bbcon:
+class Bbcon:
+
     """INIT"""
 
     def __int__(self):

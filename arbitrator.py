@@ -1,6 +1,6 @@
 
 
-class arbitrator:
+class Arbitrator:
     """COM"""
     def choose_action(self, behaviors):
         best_choice = None
