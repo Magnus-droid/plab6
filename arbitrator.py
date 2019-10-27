@@ -1,4 +1,4 @@
-
+import behavior
 
 class Arbitrator:
     """COM"""
@@ -19,4 +19,10 @@ class Arbitrator:
         else:
             return None, True
 
-"hmmmm"
+
+beh1 = behavior.Behavior(1, "beh1")
+beh2 = behavior.Behavior(0.5, "beh2")
+beh1.update()
+beh2.update()
+arb = Arbitrator([beh1, beh2])
+print(arb.choose_action().get_name())
