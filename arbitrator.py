@@ -2,11 +2,19 @@
 
 class Arbitrator:
     """COM"""
-    def choose_action(self, behaviors):
+    def __init__(self, behaviors):
+        self.behaviors = behaviors
+        self.halt = False
+
+    def choose_action(self):
         best_choice = None
-        if not behaviors:
-            return None, False
-        for behavior in behaviors:
+        for behavior in self.behaviors:
             if behavior.weight > best_choice.weight:
                 best_choice = behavior
-        return best_choice, True
+
+            elif behavior.weight == best_choice.weight:
+                best_choice = behavior
+
+            return best_choice, False
+        else:
+            return None, True

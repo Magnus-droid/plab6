@@ -12,6 +12,7 @@ class Bbcon:
         self.sensobs = []
         self.metobs = []
         self.arbitrator = None
+        self.halt = False
 
     def add_behavior(self, bhv):
         """Legger til oppførsel til behaviors"""
