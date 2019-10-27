@@ -3,7 +3,6 @@
 class arbitrator:
     """COM"""
     def choose_action(self, behaviors):
-        halt = False
         best_choice = None
         if not behaviors:
             return None, False
