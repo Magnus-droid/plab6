@@ -6,8 +6,8 @@ class arbitrator:
         halt = False
         best_choice = None
         if not behaviors:
-            return False
+            return None, False
         for behavior in behaviors:
             if behavior.weight > best_choice.weight:
                 best_choice = behavior
-        return best_choice
+        return best_choice, True
