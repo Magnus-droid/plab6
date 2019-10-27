@@ -1,1 +1,4 @@
 .idea
+.mypy_cache
+.vscode
+get-pip.py
