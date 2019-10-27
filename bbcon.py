@@ -1,14 +1,16 @@
+from sensob import sensob
+from motob import motob
 
 
 class bbcon:
     """INIT"""
+
     def __int__(self):
         self.behaviors = []
         self.active_behaviors = []
         self.sensobs = []
         self.metobs = []
         self.arbitrator = None
-
 
     def add_behavior(self, bhv):
         """Legger til oppførsel til behaviors"""
@@ -26,5 +28,10 @@ class bbcon:
         if bhv in self.active_behaviors:
             self.active_behaviors.remove(bhv)
 
+    def run_one_timestep(self, ):
+        """Oppsett av metoder"""
+        for sensob in self.sensobs:
+            sensob.update()
 
-
+    while True:
+        run_one_timestep()
