@@ -1,5 +1,5 @@
 """Behavior"""
-import Bbcon
+import bbcon
 
 
 class Behavior:
@@ -7,9 +7,9 @@ class Behavior:
 
     def __init__(self, priority):
         """Sets all attributes of a behaviour"""
-        self.bbcon = Bbcon.Bbcon()
+        self.bbcon = bbcon.Bbcon()
         self.senobs = []
-        self.motor_recommendations = []
+        self.motor_recommendation = ''
         self.active_flag = False
         self.halt_request = False
         self.priority = priority
@@ -29,7 +29,8 @@ class Behavior:
         pass
 
     def update(self):
-        #Update self.active_flag
+        print("Update active_flag")
+        self.active_flag = True
         self.sense_and_act()
         self.weight = self.priority * self.match_degree
         pass
@@ -37,8 +38,17 @@ class Behavior:
     def sense_and_act(self):
         #Gather information from used senobs and Bbcon
         #and determine a recommendation
+        print("Gathering information form senobs and computing recommendation (Here: (1, 1)")
         recommendation = (0, 0)
-        self.motor_recommendations.append(recommendation)
+        self.motor_recommendation = recommendation
+        print("Compute match degree (set to 1 here)")
+        self.match_degree = 1
+        if self.check_halt():
+            self.halt_request = True
 
+    def check_halt(self):
+        #Check if run should halt (time limit, reached goal)
+        print("Check if behaviour should halt (here: False)")
+        return False
 
 
