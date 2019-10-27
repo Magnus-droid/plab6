@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 import wiringpi2 as wp
 
 
-class Motors():
+class Motors:
     def __init__(self):
         self.setup()
 
@@ -77,7 +77,7 @@ class Motors():
         self.set_right_speed(self.dc)
 
     # Val should be a 2-element vector with values for the left and right motor speeds, both in the range [-1, 1].
-    def set_value(self, val,dur=None):
+    def set_value(self, val, dur=None):
         left_val = int(self.max * val[0])
         right_val = int(self.max * val[1])
 
@@ -103,7 +103,6 @@ class Motors():
 
     def set_right_dir(self, is_forward):
         wp.digitalWrite(24, is_forward)  # 0 is forward so if they pass 1 we 'not' it
-
 
     def persist(self, duration):
         if duration:
