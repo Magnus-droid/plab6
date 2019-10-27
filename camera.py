@@ -2,7 +2,7 @@ import os
 from PIL import Image
 
 
-TESTESTESTEST
+TESTESTESTEST AV PEDER
 
 class Camera:
 
