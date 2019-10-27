@@ -1,6 +1,7 @@
 import os
 from PIL import Image
-Testtesttest
+
+TEST
 
 class Camera:
 
