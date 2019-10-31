@@ -1,5 +1,5 @@
-from sensob import sensob
-from motob import motob
+from sensob import Sensob
+from motob import Motob
 
 
 class Bbcon:
