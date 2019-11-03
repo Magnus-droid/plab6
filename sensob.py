@@ -31,12 +31,11 @@ class Sensob():
     def process(values):
         """Prosesser input fra ulike sensorer"""
         raise NotImplementedError
-        return 0
 
-class distanceSensob(Sensob):
+class DistanceSensob(Sensob):
     def process(values):
         return values
 
-class ReflectanceSebsob(Sebsob):
+class ReflectanceSensob(Sensob):
     def process(values):
         return values

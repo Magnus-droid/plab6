@@ -1,9 +1,10 @@
 from PIL import Image
 from PIL import ImageFilter
 from PIL import ImageEnhance
+import numpy
 
 
-class Imager():
+class Imager:
 
     _pixel_colors_ = {'red':(255,0,0), 'green': (0,255,0), 'blue': (0,0,255), 'white': (255,255,255),
                       'black': (0,0,0)}
@@ -164,7 +165,9 @@ class Imager():
 
     def mortun(self,im2,levels=5,scale=0.75):
         return self.tunnel(levels,scale).morph4(im2.tunnel(levels,scale))
-
+    
+    def get_matrix(self):
+        return self.image.convert('RGB')
 ### *********** TESTS ************************
 
 # Note: the default file paths for these examples are for unix!
@@ -197,3 +200,10 @@ def reformat(in_fid, out_ext='jpeg',scalex=1.0,scaley=1.0):
     im = im.scale(scalex,scaley)
     im.dump_image(base,out_ext)
 
+
+# w, h
+birdIm = Imager(fid='shirt.jpg')
+epic = birdIm.resize(7,3).map_color_wta()
+epic.dump_image('nice.png')
+array = numpy.asarray(epic.get_matrix())
+print(array)
