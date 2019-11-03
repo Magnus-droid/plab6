@@ -42,7 +42,7 @@ class ReflectanceSensob(Sensob):
         reflect = reflectance_sensors.ReflectanceSensors()
         super().__init__(reflect)
 
-    def process(values):
+    def process(self, values):
         for value in values:
             if value > 0.8:  # if white line
                 return True

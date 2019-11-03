@@ -47,7 +47,7 @@ class AvoidCollsion(Behavior):
 
     def sense_and_act(self):
         """Caluclate match degree_based, motor requests (and halt requests) on distance"""
-        distance = self.senobs.get_values()
+        distance = self.senobs.get_values()[0]
         if distance >= 50:                  # Decide later
             self.motor_recommendation = "Same"
             self.match_degree = 0
