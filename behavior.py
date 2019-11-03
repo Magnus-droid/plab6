@@ -7,7 +7,7 @@ class Behavior:
 
     def __init__(self, priority, name):
         """Sets all attributes of a behaviour"""
-        self.senobs = None
+        self.senob = None
         self.motor_recommendation = ''
         self.active_flag = True
         self.halt_request = False
@@ -44,11 +44,11 @@ class AvoidCollsion(Behavior):
     def __init__(self):
         distancesensob = sensob.DistanceSensob()
         super().__init__(1, "AvoidCollision")
-        super().senobs = distancesensob
+        super().senob = distancesensob
 
     def sense_and_act(self):
         """Caluclate match degree_based, motor requests (and halt requests) on distance"""
-        distance = self.senobs.get_values()[0]
+        distance = self.senob.get_values()[0]
         if distance >= 50:                  # Decide later
             self.motor_recommendation = "Same"
             self.match_degree = 0
@@ -66,11 +66,11 @@ class LineDetection(Behavior):
     def __init__(self):
         refelectsensob = sensob.ReflectanceSensob()
         super().__init__(1, "LineDetection")
-        super().senobs = refelectsensob
+        super().senob = refelectsensob
 
     def sense_and_act(self):
         """Don't drive across white lines"""
-        white = self.senobs.get_values()[0]
+        white = self.senob.get_values()[0]
         if white:
             self.motor_recommendation = "Halt"
             self.match_degree = 1
