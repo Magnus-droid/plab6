@@ -4,7 +4,7 @@ import datetime
 import RPi.GPIO as GPIO
 
 
-class ReflectanceSensors():
+class ReflectanceSensors:
     # The constructor allows students to decide if they want to auto_calibrate
     # the robot, or if they want to hard code the min and max readings of the
     # reflectance sensors

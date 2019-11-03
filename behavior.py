@@ -25,8 +25,9 @@ class Behavior:
         raise NotImplementedError
 
     def update(self):
-        """Does everything"""
-        raise NotImplementedError
+        """Updates"""
+        self.sense_and_act()
+        self.weight = self.match_degree * self.priority
 
     def sense_and_act(self):
         """Calculate motor recommendations and halt requests"""
@@ -58,13 +59,23 @@ class AvoidCollsion(Behavior):
             self.motor_recommendation = "Halt"
             self.match_degree = 1
 
-    def update(self):
-        """Update senobs, call sense_and_act in order to calc self.weight"""
-        self.senobs.update()
-        self.sense_and_act()
-        self.weight = self.match_degree * self.priority
 
+class LineDetection(Behavior):
+    """Detects white lines"""
 
+    def __init__(self):
+        refelectsensob = sensob.ReflectanceSensob()
+        super().__init__(1, "LineDetection")
+        super().senobs = refelectsensob
 
+    def sense_and_act(self):
+        """Don't drive across white lines"""
+        white = self.senobs.get_values()[0]
+        if white:
+            self.motor_recommendation = "Halt"
+            self.match_degree = 1
+        else:
+            self.motor_recommendation = "Same"
+            self.match_degree = 0
 
 

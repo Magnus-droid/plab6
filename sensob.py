@@ -38,7 +38,7 @@ class Sensob:
 
 class ReflectanceSensob(Sensob):
     """Reflectance Sensob"""
-    def __int__(self):
+    def __init__(self):
         reflect = reflectance_sensors.ReflectanceSensors()
         super().__init__(reflect)
 
@@ -59,3 +59,6 @@ class DistanceSensob(Sensob):
     def process(self, values):
         """Returns floating point number"""
         return values
+
+
+
