@@ -9,7 +9,7 @@ class Behavior:
         """Sets all attributes of a behaviour"""
         self.senobs = None
         self.motor_recommendation = ''
-        self.active_flag = False
+        self.active_flag = True
         self.halt_request = False
         self.priority = priority
         self.match_degree = 0
@@ -41,14 +41,25 @@ class AvoidCollsion(Behavior):
     """Subclass to avoid collision """
 
     def __init__(self):
-        ultrasensob = sensob.DistanceSensob()
+        distancesensob = sensob.DistanceSensob()
         super().__init__(1, "AvoidCollision")
-        super().senobs = ultrasensob
+        super().senobs = distancesensob
 
     def sense_and_act(self):
-        """"""
-        self.senobs.update()
+        """Caluclate match degree_based, motor requests (and halt requests) on distance"""
         distance = self.senobs.get_values()
+        if distance < 0.5:      # Decide later
+            self.halt_request = True
+
+
+
+    def update(self):
+        """Update senobs, call sense_and_act in order to calc self.weight"""
+        self.senobs.update()
+        self.sense_and_act()
+        self.weight = self.match_degree * self.priority
+
+
 
 
 
