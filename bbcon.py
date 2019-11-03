@@ -1,5 +1,6 @@
 from sensob import Sensob
 from motob import Motob
+import arbitrator
 
 
 class Bbcon:
@@ -30,7 +31,7 @@ class Bbcon:
         if bhv in self.active_behaviors:
             self.active_behaviors.remove(bhv)
 
-    def run_one_timestep(self, ):
+    def run_one_timestep(self):
         """Oppsett av metoder"""
         for sensob in self.sensobs:
             sensob.update()

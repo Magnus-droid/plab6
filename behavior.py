@@ -1,5 +1,5 @@
 """Behavior"""
-#import bbcon
+import sensob
 
 
 class Behavior:
@@ -7,8 +7,7 @@ class Behavior:
 
     def __init__(self, priority, name):
         """Sets all attributes of a behaviour"""
-        #self.bbcon = bbcon.Bbcon()
-        self.senobs = []
+        self.senobs = None
         self.motor_recommendation = ''
         self.active_flag = False
         self.halt_request = False
@@ -19,39 +18,37 @@ class Behavior:
 
     def consider_deactivation(self):
         """Check if a behaviour should deactivate"""
-        if self.active_flag:
-            pass
-        pass
+        raise NotImplementedError
 
     def consider_activation(self):
         """Checks if a behaviour should activate"""
-        if not self.active_flag:
-            pass
-        pass
+        raise NotImplementedError
 
     def update(self):
-        print("Update active_flag")
-        self.active_flag = True
-        self.sense_and_act()
-        self.weight = self.priority * self.match_degree
+        """Does everything"""
+        raise NotImplementedError
 
     def sense_and_act(self):
-        #Gather information from used senobs and Bbcon
-        #and determine a recommendation
-        print("Gathering information form senobs and computing recommendation (Here: (1, 1))")
-        recommendation = (1, 1)
-        self.motor_recommendation = recommendation
-        print("Compute match degree (set to 1 here)")
-        self.match_degree = 1
-        if self.check_halt():
-            self.halt_request = True
-
-    def check_halt(self):
-        #Check if run should halt (time limit, reached goal)
-        print("Check if behaviour should halt (here: False)\n")
-        return False
+        """Calculate motor recommendations and halt requests"""
+        raise NotImplementedError
 
     def get_name(self):
+        """Returns name of behaviour"""
         return self.name
+
+
+class AvoidCollsion(Behavior):
+    """Subclass to avoid collision """
+
+    def __init__(self):
+        ultrasensob = sensob.DistanceSensob()
+        super().__init__(1, "AvoidCollision")
+        super().senobs = ultrasensob
+
+    def sense_and_act(self):
+        """"""
+        self.senobs.update()
+        distance = self.senobs.get_values()
+
 
 
