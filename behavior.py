@@ -1,6 +1,5 @@
 """Behavior"""
 import sensob
-from math import floor
 
 
 class Behavior:
