@@ -21,7 +21,7 @@ class Sensob:
      
     def update(self):
         """Oppdater sensorer og lagre verdier"""
-        sensor_vals = map(lambda s: s.update, self.sensors)
+        sensor_vals = list(map(lambda s: s.update, self.sensors))
         self.values = self.process(sensor_vals)
     
     def get_values(self):
