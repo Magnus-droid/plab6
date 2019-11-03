@@ -43,7 +43,10 @@ class ReflectanceSensob(Sensob):
         super().__init__(reflect)
 
     def process(values):
-        return values
+        for value in values:
+            if value > 0.8:  # if white line
+                return True
+        return False
 
 
 class DistanceSensob(Sensob):
@@ -55,7 +58,4 @@ class DistanceSensob(Sensob):
 
     def process(self, values):
         """Returns floating point number"""
-        for value in values:
-            if value > 0.8:  # if white line
-                return True
-        return False
+        return values
