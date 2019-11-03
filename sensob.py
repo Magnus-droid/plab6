@@ -1,6 +1,7 @@
 """Class for handling input from sensors"""
 
 from PIL import Image, ImageFilter, ImageEnhance
+import ultrasonic
 
 class Sensor:
     def get_value(self):
@@ -10,7 +11,7 @@ class Sensor:
         return 0
 
 
-class Sensob():
+class Sensob:
     """Container for the different sensor modules"""
 
     def __init__(self, sensors):
@@ -39,3 +40,14 @@ class DistanceSensob(Sensob):
 class ReflectanceSensob(Sensob):
     def process(values):
         return values
+
+class DistanceSensob(Sensob):
+    """Ultrasonic Senob"""
+    def __init__(self):
+        ultra = ultrasonic.Ultrasonic()
+        super().__init__(ultra)
+
+    def process(self, values):
+        """Returns floating point number"""
+        return values
+

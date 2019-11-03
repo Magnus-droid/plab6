@@ -20,9 +20,11 @@ class Arbitrator:
             return None, True
 
 
-beh1 = behavior.Behavior(1, "beh1")
-beh2 = behavior.Behavior(0.5, "beh2")
+beh1 = behavior.Behavior(1, "AvoidFallingOff")
+beh2 = behavior.Behavior(0.6, "RamIntoRed")
+beh3 = behavior.Behavior(0.7, "AvoidCollision")
+beh3.update()
 beh1.update()
 beh2.update()
-arb = Arbitrator([beh1, beh2])
+arb = Arbitrator([beh1, beh2, beh3])
 print(arb.choose_action().get_name())
