@@ -1,5 +1,6 @@
 """Behavior"""
 import sensob
+from math import floor
 
 
 class Behavior:
@@ -43,7 +44,7 @@ class AvoidCollsion(Behavior):
 
     def __init__(self):
         distancesensob = sensob.DistanceSensob()
-        super().__init__(1, "AvoidCollision")
+        super().__init__(0.6, "AvoidCollision")
         super().senob = distancesensob
 
     def sense_and_act(self):
@@ -78,4 +79,33 @@ class LineDetection(Behavior):
             self.motor_recommendation = "Same"
             self.match_degree = 0
 
+class DetectRed(Behavior):
+    """Detects red objects"""
 
+    def __init__(self):
+        camsensob = sensob.CameraSensob()
+        super().__init__(0.75, "DetectRed")
+        super().senob = camsensob
+
+    def sense_and_act(self):
+        """Look for red"""
+        red_array = self.senob.get_values()[0]
+        intensity = red_array[1]
+        if (-1 <= red_array[0] < -0.6) and intensity >= 50:
+            self.motor_recommendation = "Turn left 60"
+            self.match_degree = intensity/121
+
+        elif (-0.6 <= red_array[0] <= -0.2) and intensity >= 50:
+            self.motor_recommendation = "Turn left 30"
+            self.match_degree = intensity/121
+
+        elif (0.6 < red_array[0] <= 1) and intensity >= 50:
+            self.motor_recommendation = "Turn right 60"
+            self.match_degree = intensity/121
+
+        elif (0.2 <= red_array[0] < 0.6) and intensity >= 50:
+            self.motor_recommendation = "Turn right 30"
+            self.match_degree = intensity/121
+        elif (-0.2 < red_array[0] < 0.2) and intensity >= 50:
+            self.motor_recommendation = "Same"
+            self.match_degree = intensity/121

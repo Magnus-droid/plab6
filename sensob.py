@@ -3,6 +3,8 @@
 from PIL import Image, ImageFilter, ImageEnhance
 import ultrasonic
 import reflectance_sensors
+import camera
+
 
 
 class Sensor:
@@ -59,6 +61,19 @@ class DistanceSensob(Sensob):
     def process(self, values):
         """Returns floating point number"""
         return values
+
+
+class CameraSensob(Sensob):
+    """Camera Sensob"""
+
+    def __init__(self):
+        cam = camera.Camera()
+        super().__init__(cam)
+
+    def process(self, values):
+        # returns array
+        pass
+
 
 
 
