@@ -4,7 +4,7 @@ from PIL import Image, ImageFilter, ImageEnhance
 import ultrasonic
 import reflectance_sensors
 import camera
-
+from imager3 import find_color
 
 class Sensor:
     @staticmethod
@@ -78,5 +78,5 @@ class CameraSensob(Sensob):
         super().__init__([cam])
 
     def process(self, values):
-        return values
+        return find_color(values[0], 10, 20, "r")
 
