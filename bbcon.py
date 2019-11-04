@@ -1,7 +1,7 @@
+from time import sleep
 import sensob
 import motob
 import arbitrator
-from time import sleep
 import behavior
 
 
@@ -56,6 +56,8 @@ def run():
     behav1 = behavior.AvoidCollsion()
     behav2 = behavior.LineDetection()
     behav3 = behavior.DetectRed()
+    motor1 = motob.Motob()
+    bbcon.motobs = motor1  #Stygg kode men går for nå
     bbcon.add_sensob(sensob1)
     bbcon.add_sensob(sensob2)
     bbcon.add_sensob(sensob3)
