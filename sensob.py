@@ -47,7 +47,7 @@ class ReflectanceSensob(Sensob):
     """Reflectance Sensob"""
     def __init__(self):
         reflect = reflectance_sensors.ReflectanceSensors()
-        super().__init__(reflect)
+        super().__init__([reflect])
 
     def process(self, values):
         for value in values[0]:
@@ -61,7 +61,7 @@ class DistanceSensob(Sensob):
 
     def __init__(self):
         ultra = ultrasonic.Ultrasonic()
-        super().__init__(ultra)
+        super().__init__([ultra])
 
     def process(self, values):
         """Returns floating point number"""
@@ -73,7 +73,7 @@ class CameraSensob(Sensob):
 
     def __init__(self):
         cam = camera.Camera()
-        super().__init__(cam)
+        super().__init__([cam])
 
     def process(self, values):
         # returns array
