@@ -4,10 +4,9 @@ import arbitrator
 from time import sleep
 import behavior
 
+
 class Bbcon:
-
     """INIT"""
-
     def __int__(self):
         self.behaviors = []
         self.active_behaviors = []
@@ -25,10 +24,12 @@ class Bbcon:
         self.sensobs.append(sensob)
 
     def activate_behavior(self, bhv):
+        """Activate a behavior of choice"""
         if bhv in self.behaviors and bhv not in self.active_behaviors:
             self.active_behaviors.append(bhv)
 
     def deactive_behavior(self, bhv):
+        """Deactivate a behavior of choice"""
         if bhv in self.active_behaviors:
             self.active_behaviors.remove(bhv)
 
@@ -46,16 +47,20 @@ class Bbcon:
             sensob.reset()
 
 
-bbcon = Bbcon()
-sensob1 = sensob.DistanceSensob()
-sensob2 = sensob.ReflectanceSensob()
-sensob3 = sensob.CameraSensob()
-behav1 = behavior.AvoidCollsion()
-behav2 = behavior.LineDetection()
-behav3 = behavior.DetectRed()
-bbcon.add_sensob(sensob1)
-bbcon.add_sensob(sensob2)
-bbcon.add_sensob(sensob3)
-bbcon.add_behavior(behav1)
-bbcon.add_behavior(behav2)
-bbcon.add_behavior(behav3)
+def run():
+    """Starting up the robot"""
+    bbcon = Bbcon()
+    sensob1 = sensob.DistanceSensob()
+    sensob2 = sensob.ReflectanceSensob()
+    sensob3 = sensob.CameraSensob()
+    behav1 = behavior.AvoidCollsion()
+    behav2 = behavior.LineDetection()
+    behav3 = behavior.DetectRed()
+    bbcon.add_sensob(sensob1)
+    bbcon.add_sensob(sensob2)
+    bbcon.add_sensob(sensob3)
+    bbcon.add_behavior(behav1)
+    bbcon.add_behavior(behav2)
+    bbcon.add_behavior(behav3)
+    while True:
+        bbcon.run_one_timestep()
