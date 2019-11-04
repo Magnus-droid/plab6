@@ -110,6 +110,8 @@ class Motors:
             self.stop()
 
 
+
+print("GOGOGOGOGOGOGOGO")
 motor = Motors()
 motor.forward(dur=3)
-print("GOGOGOGOGOGOGOGO")
+
