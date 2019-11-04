@@ -1,13 +1,14 @@
-from time import sleep
+"""?"""
 import sensob
 import motob
 import arbitrator
+from time import sleep
 import behavior
 
 
 class Bbcon:
     """INIT"""
-    def __init__(self):
+    def __int__(self):
         self.behaviors = []
         self.active_behaviors = []
         self.sensobs = []
@@ -28,7 +29,7 @@ class Bbcon:
         if bhv in self.behaviors and bhv not in self.active_behaviors:
             self.active_behaviors.append(bhv)
 
-    def deactivate_behavior(self, bhv):
+    def deactive_behavior(self, bhv):
         """Deactivate a behavior of choice"""
         if bhv in self.active_behaviors:
             self.active_behaviors.remove(bhv)
@@ -50,15 +51,12 @@ class Bbcon:
 def run():
     """Starting up the robot"""
     bbcon = Bbcon()
-    bbcon.arbitrator = arbitrator.Arbitrator()
     sensob1 = sensob.DistanceSensob()
     sensob2 = sensob.ReflectanceSensob()
     sensob3 = sensob.CameraSensob()
     behav1 = behavior.AvoidCollsion()
     behav2 = behavior.LineDetection()
     behav3 = behavior.DetectRed()
-    motor1 = motob.Motob()
-    bbcon.motobs = motor1  #Stygg kode men går for nå
     bbcon.add_sensob(sensob1)
     bbcon.add_sensob(sensob2)
     bbcon.add_sensob(sensob3)
