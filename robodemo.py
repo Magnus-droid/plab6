@@ -1,12 +1,12 @@
 __author__ = 'keithd'
 
-from time import sleep
-import random
+#from time import sleep
+#import random
 #import imager2 as IMR
-from reflectance_sensors import ReflectanceSensors
-from camera import Camera
+#from reflectance_sensors import ReflectanceSensors
+#rom camera import Camera
 from motors import Motors
-from ultrasonic import Ultrasonic
+#from ultrasonic import Ultrasonic
 from zumo_button import ZumoButton
 
 
@@ -26,7 +26,7 @@ def dancer():
     m.set_value([.5,.1],10)
     m.set_value([-.5,-.1],10)
 
-
+"""
 # This tests the UV (distance) sensors.  The robot moves forward to within 10 cm of the nearest obstacle.  It
 # then does a little dancing before backing up to approximately 50 cm from the nearest obstacle.
 
@@ -52,7 +52,7 @@ def random_step(motors,speed=0.25,duration=1):
 # This moves around randomly until it gets to a dark spot on the floor (detected with the infrared belly sensors).
 # It then rotates around, snapping pictures as it goes.  It then pastes all the pictures together into a
 # panoramo view, many of which may be created per "vacation".
-"""
+
 def tourist(steps=25,shots=5,speed=.25):
     ZumoButton().wait_for_press()
     rs = ReflectanceSensors(); m = Motors(); c = Camera()
