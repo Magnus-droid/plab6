@@ -18,6 +18,8 @@ class Ultrasonic():
         x = self.sensor_get_value()
         print(x)
         self.value = x
+        print(self.value)
+        return self.value
 
     def reset(self):
         self.value = None
