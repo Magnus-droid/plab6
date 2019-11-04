@@ -6,12 +6,13 @@ import reflectance_sensors
 import camera
 
 
-
 class Sensor:
-    def get_value(self):
+    @staticmethod
+    def get_value():
         return 0
 
-    def update(self):
+    @staticmethod
+    def update():
         return 0
 
 
