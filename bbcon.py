@@ -41,7 +41,9 @@ class Bbcon:
         for behavior in self.behaviors:
             behavior.update()
         for motob in self.motobs:
-            motob.update(arbi.choose_action(self.behaviors))
+            x = arbi.choose_action(self.behaviors)
+            print(x)
+            motob.update(x)
             sleep(0.5)
 
 
