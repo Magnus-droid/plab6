@@ -50,6 +50,7 @@ class ReflectanceSensob(Sensob):
         super().__init__([reflect])
 
     def process(self, values):
+        print(values)
         for value in values[0]:
             if value > 0.8:  # if white line
                 return True
