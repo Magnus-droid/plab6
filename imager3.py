@@ -95,85 +95,12 @@ class Imager:
                 return (0,0,0)
         return self.map_image2(wta,image)
     
-    def filter_color(self, color, thresh=0.34):
-        image = self.image
-        def wta_clear(p):
-            s = sum(p)
-            w = max(p)
-            if s > 0 and w/s >= thresh:
-                r, b, g = p
-                if s > 0 and w/s >= thresh:
-                    if color == 'r':
-                        return (r, 0, 0)
-                    elif color == 'g':
-                        return (0, g, 0)
-                    elif color == 'b':
-                        return (0, 0, b)
-            return (0,0,0) 
-        return self.map_image2(wta_clear, image)
-    
     def contrast(self, val):
         return Imager(image=ImageEnhance.Contrast(self.image).enhance(val))
 
     # Note that grayscale uses the RGB triple to define shades of gray.
     def gen_grayscale(self,image=False): 
         return self.scale_colors(image=image,degree=0)
-
-    def scale_colors(self,image=False,degree=0.5):
-        image = image if image else self.image
-        return Imager(image=ImageEnhance.Color(image).enhance(degree))
-
-    def paste(self,im2,x0=0,y0=0):
-        self.get_image().paste(im2.get_image(),(x0,y0,x0+im2.xmax,y0+im2.ymax))
-
-    ### Combining imagers in various ways.
-
-    ## The two concatenate operations will handle images of different sizes
-    def concat_vert(self,im2=False,background='black'):
-        im2 = im2 if im2 else self # concat with yourself if no other imager is given.
-        im3 = Imager()
-        im3.xmax = max(self.xmax,im2.xmax)
-        im3.ymax = self.ymax + im2.ymax
-        im3.image = im3.gen_plain_image(im3.xmax,im3.ymax,background)
-        im3.paste(self,0,0)
-        im3.paste(im2, 0,self.ymax)
-        return im3
-
-    def concat_horiz(self,im2=False,background='black'):
-        im2 = im2 if im2 else self # concat with yourself if no other imager is given.
-        im3 = Imager()
-        im3.ymax = max(self.ymax,im2.ymax)
-        im3.xmax = self.xmax + im2.xmax
-        im3.image = im3.gen_plain_image(im3.xmax,im3.ymax,background)
-        im3.paste(self, 0,0)
-        im3.paste(im2, self.xmax,0)
-        return im3
-
-    # This requires self and im2 to be of the same size
-    def morph(self,im2,alpha=0.5):
-        im3 = Imager(width=self.xmax,height=self.ymax) # Creates a plain image
-        for x in range(self.xmax):
-            for y in range(self.ymax):
-                rgb = self.combine_pixels(self.get_pixel(x,y), im2.get_pixel(x,y), alpha=alpha)
-                im3.set_pixel(x,y,rgb)
-        return im3
-
-    def morph4(self,im2):
-        im3 = self.morph(im2,alpha=0.66)
-        im4 = self.morph(im2,alpha=0.33)
-        return self.concat_horiz(im3).concat_vert(im4.concat_horiz(im2))
-
-    def morphroll(self,im2,steps=3):
-        delta_alpha = 1/(1+steps)
-        roll = self
-        for i in range(steps):
-            alpha = (i + 1)*delta_alpha
-            roll = roll.concat_horiz(self.morph(im2,1-alpha))
-        roll = roll.concat_horiz(im2)
-        return roll
-
-    def mortun(self,im2,levels=5,scale=0.75):
-        return self.tunnel(levels,scale).morph4(im2.tunnel(levels,scale))
     
     def get_matrix(self):
         return self.image.convert('RGB')
@@ -209,9 +136,12 @@ def find_color(image, height, width, color):
     tmp = numpy.transpose(tmp)
     tmp = list(map(lambda a: sum(a)/height, tmp))
     tmp = numpy.transpose(tmp).tolist()
-
+    
     direction = sum([v*i for v, i in enumerate(tmp)])/sum(tmp)
     max_val = max(tmp)
+    
+    ## print(tmp)   
+    ## processed_image.dump_image('nice.png')
 
     return ((direction-width/2)/(width/2), max_val)
 
