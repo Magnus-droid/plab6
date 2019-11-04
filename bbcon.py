@@ -8,7 +8,7 @@ import behavior
 
 class Bbcon:
     """INIT"""
-    def __int__(self):
+    def __init__(self):
         self.behaviors = []
         self.active_behaviors = []
         self.sensobs = []
