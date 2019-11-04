@@ -51,12 +51,14 @@ class Bbcon:
 def run():
     """Starting up the robot"""
     bbcon = Bbcon()
+    bbcon.arbitrator = arbitrator.Arbitrator()
     sensob1 = sensob.DistanceSensob()
     sensob2 = sensob.ReflectanceSensob()
     sensob3 = sensob.CameraSensob()
     behav1 = behavior.AvoidCollsion()
     behav2 = behavior.LineDetection()
     behav3 = behavior.DetectRed()
+    bbcon.motobs = motob.Motob()
     bbcon.add_sensob(sensob1)
     bbcon.add_sensob(sensob2)
     bbcon.add_sensob(sensob3)
