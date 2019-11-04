@@ -1,6 +1,6 @@
 """?"""
 import sensob
-import motob
+from motob import Motob
 from arbitrator import Arbitrator
 from time import sleep
 import behavior
@@ -23,6 +23,10 @@ class Bbcon:
         """Legger til sensor observatør til"""
         self.sensobs.append(sensob)
 
+    def add_motob(self, motob):
+        """Legger til motob i motobs"""
+        self.motobs.append(motob)
+
     def activate_behavior(self, bhv):
         """Activate a behavior of choice"""
         if bhv in self.behaviors and bhv not in self.active_behaviors:
@@ -42,7 +46,7 @@ class Bbcon:
             behavior.update()
         for motob in self.motobs:
             x = arbi.choose_action(self.behaviors)
-            print(x)
+            print("Motor recommend: ", x)
             motob.update(x)
             sleep(0.5)
 
@@ -57,12 +61,14 @@ def run():
     behav1 = behavior.AvoidCollsion(sensob1)
     behav2 = behavior.LineDetection(sensob2)
     behav3 = behavior.DetectRed(sensob3)
+    motob = Motob()
     bbcon.add_sensob(sensob1)
     bbcon.add_sensob(sensob2)
     bbcon.add_sensob(sensob3)
     bbcon.add_behavior(behav1)
     bbcon.add_behavior(behav2)
     bbcon.add_behavior(behav3)
+    bbcon.add_motob(motob)
     bbcon.run_one_timestep()
 
 
