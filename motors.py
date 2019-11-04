@@ -112,3 +112,4 @@ class Motors:
 
 motor = Motors()
 motor.forward(dur=3)
+print("GOGOGOGOGOGOGOGO")
