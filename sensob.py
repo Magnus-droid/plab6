@@ -31,6 +31,7 @@ class Sensob:
 
     def get_values(self):
         """Få prosesserte verdier"""
+        print(self.values)
         return self.values
 
     @staticmethod
