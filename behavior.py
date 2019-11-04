@@ -5,9 +5,9 @@ import sensob
 class Behavior:
     """Behavior class"""
 
-    def __init__(self, priority, name):
+    def __init__(self, priority, name, sensob):
         """Sets all attributes of a behaviour"""
-        self.senob = None
+        self.senob = sensob
         self.motor_recommendation = ''
         self.active_flag = True
         self.halt_request = False
@@ -41,10 +41,8 @@ class Behavior:
 class AvoidCollsion(Behavior):
     """Subclass to avoid collision """
 
-    def __init__(self):
-        distancesensob = sensob.DistanceSensob()
-        super().__init__(0.6, "AvoidCollision")
-        super().senob = distancesensob
+    def __init__(self, sensob):
+        super().__init__(0.6, "AvoidCollision", sensob)
 
     def sense_and_act(self):
         """Caluclate match degree_based, motor requests (and halt requests) on distance"""
@@ -63,14 +61,12 @@ class AvoidCollsion(Behavior):
 class LineDetection(Behavior):
     """Detects white lines"""
 
-    def __init__(self):
-        refelectsensob = sensob.ReflectanceSensob()
-        super().__init__(1, "LineDetection")
-        super().senob = refelectsensob
+    def __init__(self, sensob):
+        super().__init__(1, "LineDetection", sensob)
 
     def sense_and_act(self):
         """Don't drive across white lines"""
-        white = self.senob.get_values()[0]      # Calibrate accordingly
+        white = self.senob.get_values()[0]
         if white:
             self.motor_recommendation = "Halt"
             self.match_degree = 1
@@ -78,13 +74,12 @@ class LineDetection(Behavior):
             self.motor_recommendation = "Same"
             self.match_degree = 0
 
+
 class DetectRed(Behavior):
     """Detects red objects"""
 
-    def __init__(self):
-        camsensob = sensob.CameraSensob()
-        super().__init__(0.75, "DetectRed")
-        super().senob = camsensob
+    def __init__(self, sensob):
+        super().__init__(0.75, "DetectRed", sensob)
 
     def sense_and_act(self):
         """Look for red"""

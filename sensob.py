@@ -4,7 +4,7 @@ from PIL import Image, ImageFilter, ImageEnhance
 import ultrasonic
 import reflectance_sensors
 import camera
-
+from imager3 import find_color
 
 class Sensor:
     @staticmethod
@@ -26,8 +26,10 @@ class Sensob:
 
     def update(self):
         """Oppdater sensorer og lagre verdier"""
-        sensor_vals = list(map(lambda s: s.update, self.sensors))
+        sensor_vals = list(map(lambda s: s.update(), self.sensors))
+        print("Sensob update: ", sensor_vals)
         self.values = self.process(sensor_vals)
+        print("Self.values: ", self.values)
 
     def get_values(self):
         """Få prosesserte verdier"""
@@ -47,13 +49,13 @@ class ReflectanceSensob(Sensob):
     """Reflectance Sensob"""
     def __init__(self):
         reflect = reflectance_sensors.ReflectanceSensors()
-        super().__init__(reflect)
+        super().__init__([reflect])
 
     def process(self, values):
         for value in values[0]:
             if value > 0.8:  # if white line
-                return True
-        return False
+                return [True]
+        return [False]
 
 
 class DistanceSensob(Sensob):
@@ -61,11 +63,11 @@ class DistanceSensob(Sensob):
 
     def __init__(self):
         ultra = ultrasonic.Ultrasonic()
-        super().__init__(ultra)
+        super().__init__([ultra])
 
     def process(self, values):
         """Returns floating point number"""
-        return values
+        return [3]            #FIX THIS
 
 
 class CameraSensob(Sensob):
@@ -73,9 +75,8 @@ class CameraSensob(Sensob):
 
     def __init__(self):
         cam = camera.Camera()
-        super().__init__(cam)
+        super().__init__([cam])
 
     def process(self, values):
-        # returns array
-        pass
+        return find_color(values[0], 10, 20, "r")
 

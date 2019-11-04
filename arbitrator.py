@@ -1,16 +1,11 @@
 """Chooses the most urgent request"""
-import bbcon
 
 
 class Arbitrator:
     """COM"""
 
-    def __init__(self):
-        self.bbcon = bbcon.Bbcon()
-
-    def choose_action(self):
+    def choose_action(self, behaviors):
         """Chooses action with heaviest weight"""
-        behaviors = self.bbcon.behaviors
         best_choice = behaviors[0]
         for behav in behaviors:
             if behav.halt_request:
