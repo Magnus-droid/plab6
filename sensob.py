@@ -29,6 +29,7 @@ class Sensob:
         sensor_vals = list(map(lambda s: s.update(), self.sensors))
         print("Sensob update: ", sensor_vals)
         self.values = self.process(sensor_vals)
+        print("Self.values: ", self.values)
 
     def get_values(self):
         """Få prosesserte verdier"""
