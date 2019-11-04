@@ -79,6 +79,3 @@ class CameraSensob(Sensob):
         # returns array
         pass
 
-
-
-
