@@ -67,7 +67,7 @@ class DistanceSensob(Sensob):
 
     def process(self, values):
         """Returns floating point number"""
-        return 3            #FIX THIS
+        return [3]            #FIX THIS
 
 
 class CameraSensob(Sensob):
