@@ -84,6 +84,7 @@ class DetectRed(Behavior):
     def sense_and_act(self):
         """Look for red"""
         red_array = self.senob.get_values()[0]
+        print(self.senob.get_values)
         intensity = red_array[1]
         if (-1 <= red_array[0] < -0.6) and intensity >= 50:
             self.motor_recommendation = "L60"
