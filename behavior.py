@@ -44,7 +44,7 @@ class AvoidCollsion(Behavior):
     def __init__(self):
         distancesensob = sensob.DistanceSensob()
         super().__init__(0.6, "AvoidCollision")
-        super().senob = distancesensob
+        self.senob = distancesensob
 
     def sense_and_act(self):
         """Caluclate match degree_based, motor requests (and halt requests) on distance"""
@@ -66,7 +66,7 @@ class LineDetection(Behavior):
     def __init__(self):
         refelectsensob = sensob.ReflectanceSensob()
         super().__init__(1, "LineDetection")
-        super().senob = refelectsensob
+        self.senob = refelectsensob
 
     def sense_and_act(self):
         """Don't drive across white lines"""
@@ -85,7 +85,7 @@ class DetectRed(Behavior):
     def __init__(self):
         camsensob = sensob.CameraSensob()
         super().__init__(0.75, "DetectRed")
-        super().senob = camsensob
+        self.senob = camsensob
 
     def sense_and_act(self):
         """Look for red"""
