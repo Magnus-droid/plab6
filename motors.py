@@ -108,10 +108,3 @@ class Motors:
         if duration:
             sleep(duration)
             self.stop()
-
-
-
-print("GOGOGOGOGOGOGOGO")
-motor = Motors()
-motor.forward(dur=3)
-
