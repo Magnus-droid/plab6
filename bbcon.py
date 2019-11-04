@@ -50,6 +50,7 @@ class Bbcon:
 
 def run():
     """Starting up the robot"""
+    print("Running!")
     bbcon = Bbcon()
     sensob1 = sensob.DistanceSensob()
     sensob2 = sensob.ReflectanceSensob()
