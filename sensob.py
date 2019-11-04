@@ -37,6 +37,10 @@ class Sensob:
         """Prosesser input fra ulike sensorer"""
         raise NotImplementedError
 
+    def reset(self):
+        """Reset all sensors"""
+        self.sensors.reset()
+
 
 class ReflectanceSensob(Sensob):
     """Reflectance Sensob"""

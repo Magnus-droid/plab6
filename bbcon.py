@@ -1,7 +1,7 @@
 from sensob import Sensob
 from motob import Motob
 import arbitrator
-
+from time import sleep
 
 class Bbcon:
 
@@ -32,12 +32,14 @@ class Bbcon:
             self.active_behaviors.remove(bhv)
 
     def run_one_timestep(self):
-        """Tick"""
+        """Tick. Updates the sensobs, behaviors, motobs, arbitrator and resets sensobs at last"""
+        arbi = arbitrator.Arbitrator()
         for sensob in self.sensobs:
             sensob.update()
-        for behavior in self.active_behaviors:
+        for behavior in self.behaviors:
             behavior.update()
-
-
-    while True:
-        run_one_timestep()
+        for motob in self.metobs:
+            motob.update(arbi.choose_action())
+            sleep(0.5)
+        for sensob in self.sensobs:
+            sensob.reset()
