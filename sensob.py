@@ -63,7 +63,7 @@ class DistanceSensob(Sensob):
 
     def process(self, values):
         """Returns floating point number"""
-        return [3]            #FIX THIS
+        return values
 
 
 class CameraSensob(Sensob):
@@ -76,4 +76,3 @@ class CameraSensob(Sensob):
     def process(self, values):
         return find_color(values[0], 10, 20, "r")
 
-    #test
