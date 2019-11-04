@@ -109,3 +109,6 @@ class Motors:
             sleep(duration)
             self.stop()
 
+
+motor = Motors()
+motor.forward(dur=3)
