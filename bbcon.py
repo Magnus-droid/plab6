@@ -50,6 +50,7 @@ class Bbcon:
 def run():
     """Starting up the robot"""
     bbcon = Bbcon()
+    bbcon.arbitrator = arbitrator.Arbitrator()
     sensob1 = sensob.DistanceSensob()
     sensob2 = sensob.ReflectanceSensob()
     sensob3 = sensob.CameraSensob()
