@@ -64,6 +64,7 @@ def run():
     bbcon.add_behavior(behav1)
     bbcon.add_behavior(behav2)
     bbcon.add_behavior(behav3)
+    bbcon.run_one_timestep()
 
 
 run()
