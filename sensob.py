@@ -78,6 +78,5 @@ class CameraSensob(Sensob):
         super().__init__([cam])
 
     def process(self, values):
-        # returns array
-        pass
+        return values
 
