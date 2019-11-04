@@ -12,7 +12,7 @@ class Bbcon:
         self.behaviors = []
         self.active_behaviors = []
         self.sensobs = []
-        self.metobs = []
+        self.motobs = []
         self.arbitrator = None
         self.halt = False
 
@@ -23,10 +23,6 @@ class Bbcon:
     def add_sensob(self, sensob):
         """Legger til sensor observatør til"""
         self.sensobs.append(sensob)
-
-    def add_motob(self, motob):
-        """Add motob to motobs"""
-        self.metobs.append(motob)
 
     def activate_behavior(self, bhv):
         if bhv in self.behaviors and bhv not in self.active_behaviors:
@@ -43,7 +39,7 @@ class Bbcon:
             sensob.update()
         for behavior in self.behaviors:
             behavior.update()
-        for motob in self.metobs:
+        for motob in self.motobs:
             motob.update(arbi.choose_action())
             sleep(0.5)
         for sensob in self.sensobs:
