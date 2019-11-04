@@ -1,7 +1,8 @@
-from sensob import Sensob
-from motob import Motob
+import sensob
+import motob
 import arbitrator
 from time import sleep
+import behavior
 
 class Bbcon:
 
@@ -23,6 +24,10 @@ class Bbcon:
         """Legger til sensor observatør til"""
         self.sensobs.append(sensob)
 
+    def add_motob(self, motob):
+        """Add motob to motobs"""
+        self.metobs.append(motob)
+
     def activate_behavior(self, bhv):
         if bhv in self.behaviors and bhv not in self.active_behaviors:
             self.active_behaviors.append(bhv)
@@ -43,3 +48,18 @@ class Bbcon:
             sleep(0.5)
         for sensob in self.sensobs:
             sensob.reset()
+
+
+bbcon = Bbcon()
+sensob1 = sensob.DistanceSensob()
+sensob2 = sensob.ReflectanceSensob()
+sensob3 = sensob.CameraSensob()
+behav1 = behavior.AvoidCollsion()
+behav2 = behavior.LineDetection()
+behav3 = behavior.DetectRed()
+bbcon.add_sensob(sensob1)
+bbcon.add_sensob(sensob2)
+bbcon.add_sensob(sensob3)
+bbcon.add_behavior(behav1)
+bbcon.add_behavior(behav2)
+bbcon.add_behavior(behav3)
