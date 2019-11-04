@@ -13,7 +13,6 @@ class Bbcon:
         self.active_behaviors = []
         self.sensobs = []
         self.motobs = []
-        self.arbitrator = None
         self.halt = False
 
     def add_behavior(self, bhv):
@@ -42,7 +41,7 @@ class Bbcon:
         for behavior in self.behaviors:
             behavior.update()
         for motob in self.motobs:
-            motob.update(arbi.choose_action())
+            motob.update(arbi.choose_action(self.behaviors))
             sleep(0.5)
         for sensob in self.sensobs:
             sensob.reset()
