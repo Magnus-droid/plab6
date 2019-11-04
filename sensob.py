@@ -42,7 +42,8 @@ class Sensob:
 
     def reset(self):
         """Reset all sensors"""
-        self.sensors.reset()
+        for sensor in self.sensors:
+            sensor.reset()
 
 
 class ReflectanceSensob(Sensob):
