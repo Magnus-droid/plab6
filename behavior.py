@@ -70,7 +70,7 @@ class LineDetection(Behavior):
 
     def sense_and_act(self):
         """Don't drive across white lines"""
-        white = self.senob.get_values()[0]
+        white = self.senob.get_values()[0]      # !!!
         if white:
             self.motor_recommendation = "Halt"
             self.match_degree = 1
@@ -91,20 +91,22 @@ class DetectRed(Behavior):
         red_array = self.senob.get_values()[0]
         intensity = red_array[1]
         if (-1 <= red_array[0] < -0.6) and intensity >= 50:
-            self.motor_recommendation = "Turn left 60"
+            self.motor_recommendation = "L60"
             self.match_degree = intensity/121
 
         elif (-0.6 <= red_array[0] <= -0.2) and intensity >= 50:
-            self.motor_recommendation = "Turn left 30"
+            self.motor_recommendation = "L30"
             self.match_degree = intensity/121
 
         elif (0.6 < red_array[0] <= 1) and intensity >= 50:
-            self.motor_recommendation = "Turn right 60"
+            self.motor_recommendation = "R60"
             self.match_degree = intensity/121
 
         elif (0.2 <= red_array[0] < 0.6) and intensity >= 50:
-            self.motor_recommendation = "Turn right 30"
+            self.motor_recommendation = "R30"
             self.match_degree = intensity/121
         elif (-0.2 < red_array[0] < 0.2) and intensity >= 50:
             self.motor_recommendation = "Same"
             self.match_degree = intensity/121
+
+

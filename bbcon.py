@@ -32,7 +32,7 @@ class Bbcon:
             self.active_behaviors.remove(bhv)
 
     def run_one_timestep(self):
-        """Oppsett av metoder"""
+        """Tick"""
         for sensob in self.sensobs:
             sensob.update()
         for behavior in self.active_behaviors:
