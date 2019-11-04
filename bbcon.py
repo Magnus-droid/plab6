@@ -43,8 +43,6 @@ class Bbcon:
         for motob in self.motobs:
             motob.update(arbi.choose_action(self.behaviors))
             sleep(0.5)
-        for sensob in self.sensobs:
-            sensob.reset()
 
 
 def run():
