@@ -76,3 +76,4 @@ class CameraSensob(Sensob):
     def process(self, values):
         return find_color(values[0], 10, 20, "r")
 
+    #test
