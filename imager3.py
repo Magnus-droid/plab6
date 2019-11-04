@@ -103,15 +103,17 @@ class Imager:
             if s > 0 and w/s >= thresh:
                 r, b, g = p
                 if s > 0 and w/s >= thresh:
-                    if color == 'r' and r == w:
+                    if color == 'r':
                         return (r, 0, 0)
-                    elif color == 'g' and g == w:
+                    elif color == 'g':
                         return (0, g, 0)
-                    elif color == 'b' and b == w:
+                    elif color == 'b':
                         return (0, 0, b)
             return (0,0,0) 
         return self.map_image2(wta_clear, image)
-                        
+    
+    def contrast(self, val):
+        return Imager(image=ImageEnhance.Contrast(self.image).enhance(val))
 
     # Note that grayscale uses the RGB triple to define shades of gray.
     def gen_grayscale(self,image=False): 
@@ -175,6 +177,12 @@ class Imager:
     
     def get_matrix(self):
         return self.image.convert('RGB')
+    
+    def saturate(self, val=2):
+        return Imager(image=ImageEnhance.Color(self.image).enhance(val))
+
+    def blur(self, r=0.8):
+        return Imager(image=self.image.filter(ImageFilter.GaussianBlur(r)))
 
 def reformat(in_fid, out_ext='jpeg',scalex=1.0,scaley=1.0):
     base, extension = in_fid.split('.')
@@ -182,9 +190,30 @@ def reformat(in_fid, out_ext='jpeg',scalex=1.0,scaley=1.0):
     im = im.scale(scalex,scaley)
     im.dump_image(base,out_ext)
 
+height = 10
+width = 20
+color = 'g'
 
-# w, h
-epic = Imager(fid='bird.jpg').resize(10,10).filter_color('b', 0.10)
-epic.dump_image('nice.png')
-array = numpy.asarray(epic.get_matrix())
-print(array)
+def find_color(image, height, width, color):
+
+    processed_image = Imager(image=image).resize(width,height).map_color_wta()
+    array = numpy.asarray(processed_image.get_matrix())
+    
+    # isoler ut fargen vi er interessert i
+    d = {'r': 0, 'g': 1, 'b': 2}
+    tmp = []
+    for row in array:
+        tmp.append(list(map(lambda l: l[d[color]], row)))
+
+    # summer de ulike kolonnene
+    tmp = numpy.transpose(tmp)
+    tmp = list(map(lambda a: sum(a)/height, tmp))
+    tmp = numpy.transpose(tmp).tolist()
+
+    direction = sum([v*i for v, i in enumerate(tmp)])/sum(tmp)
+    max_val = max(tmp)
+
+    return ((direction-width/2)/(width/2), max_val)
+
+bird = Image.open('shirt.jpg')
+print(find_color(bird, 10, 20, 'r'))
