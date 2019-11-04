@@ -54,8 +54,8 @@ class ReflectanceSensob(Sensob):
     def process(self, values):
         for value in values[0]:
             if value > 0.8:  # if white line
-                return True
-        return False
+                return [True]
+        return [False]
 
 
 class DistanceSensob(Sensob):
