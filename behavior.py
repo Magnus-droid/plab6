@@ -70,7 +70,7 @@ class LineDetection(Behavior):
 
     def sense_and_act(self):
         """Don't drive across white lines"""
-        white = self.senob.get_values()[0]      # !!!
+        white = self.senob.get_values()[0]      # Calibrate accordingly
         if white:
             self.motor_recommendation = "Halt"
             self.match_degree = 1
