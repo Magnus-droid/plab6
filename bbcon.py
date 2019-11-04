@@ -7,7 +7,7 @@ import behavior
 
 class Bbcon:
     """INIT"""
-    def __int__(self):
+    def __init__(self):
         self.behaviors = []
         self.active_behaviors = []
         self.sensobs = []
@@ -28,7 +28,7 @@ class Bbcon:
         if bhv in self.behaviors and bhv not in self.active_behaviors:
             self.active_behaviors.append(bhv)
 
-    def deactive_behavior(self, bhv):
+    def deactivate_behavior(self, bhv):
         """Deactivate a behavior of choice"""
         if bhv in self.active_behaviors:
             self.active_behaviors.remove(bhv)
