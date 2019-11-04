@@ -8,8 +8,8 @@ class Motob:
     def __init__(self):
         motor = motors.Motors()
         motor.setup()
-        self.motors = [motor]
-        self.value = ''
+        self.motor = motor
+        self.value = None
 
     def update(self, recommendation):
         self.value = recommendation

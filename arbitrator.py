@@ -1,7 +1,9 @@
 import behavior
 
+
 class Arbitrator:
     """COM"""
+
     def __init__(self, behaviors):
         self.behaviors = behaviors
         self.halt = False

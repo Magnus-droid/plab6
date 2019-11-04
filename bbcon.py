@@ -35,6 +35,9 @@ class Bbcon:
         """Oppsett av metoder"""
         for sensob in self.sensobs:
             sensob.update()
+        for behavior in self.active_behaviors:
+            behavior.update()
+
 
     while True:
         run_one_timestep()
