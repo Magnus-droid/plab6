@@ -145,5 +145,3 @@ def find_color(image, height, width, color):
 
     return ((direction-width/2)/(width/2), max_val)
 
-bird = Image.open('shirt.jpg')
-print(find_color(bird, 10, 20, 'r'))
