@@ -21,13 +21,13 @@ class Camera:
         self.s = socket.socket()
         self.s.connect((HOST, PORT))
         print("connected to camera daemon")
-        self.s.send('ack')
+        self.s.send(str.encode('ack'))
 
     def get_value(self):  return self.value
 
     def update(self):
         #self.sensor_get_value()
-        self.s.send('snap')
+        self.s.send(str.encode('snap'))
         self.value = Image.open('image.png').convert('RGB')
         return self.value
 
