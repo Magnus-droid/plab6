@@ -16,3 +16,4 @@ class Arbitrator:
         print("Message from behavior: ", best_choice.message)
         print("Name of behaviour: ", best_choice.name)
         return best_choice.motor_recommendation, False
+#test
