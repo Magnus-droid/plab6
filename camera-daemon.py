@@ -19,7 +19,7 @@ serversocket.listen(10) # max 10 clients
 def handle(clientsocket):
 	while 1:
 		buf = clientsocket.recv(MAX_LENGTH)
-		
+		print("Buf: ", buf)
 		# Receive the SNAP command. Take a picture with PiCam.
 		if buf == 'snap':
 			print("taking picture :)")
