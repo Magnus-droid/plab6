@@ -5,7 +5,6 @@ from arbitrator import Arbitrator
 from time import sleep
 import behavior
 from motors import Motors
-from robodemo import dancer
 
 
 class Bbcon:
