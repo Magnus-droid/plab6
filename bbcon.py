@@ -5,7 +5,7 @@ from arbitrator import Arbitrator
 from time import sleep
 import behavior
 from motors import Motors
-
+from zumo_button import ZumoButton
 
 class Bbcon:
     """INIT"""
@@ -62,8 +62,8 @@ def run():
     behav1 = behavior.AvoidCollsion(sensob1)
     behav2 = behavior.LineDetection(sensob2)
     behav3 = behavior.DetectRed(sensob3)
-    motor = Motors()
-    motob = Motob(motor)
+    m = Motors()
+    motob = Motob(m)
     bbcon.add_sensob(sensob1)
     bbcon.add_sensob(sensob2)
     bbcon.add_sensob(sensob3)
@@ -71,7 +71,15 @@ def run():
     bbcon.add_behavior(behav2)
     bbcon.add_behavior(behav3)
     bbcon.add_motob(motob)
-    motor.backward(.2,3)
+    ZumoButton().wait_for_press()
+    m = Motors()
+    m.forward(.2,3)
+    m.backward(.2,3)
+    m.right(.5,3)
+    m.left(.5,3)
+    m.backward(.3,2.5)
+    m.set_value([.5,.1],10)
+    m.set_value([-.5,-.1],10)
     bbcon.run_one_timestep()
 
 
