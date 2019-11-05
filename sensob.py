@@ -4,7 +4,7 @@ from PIL import Image, ImageFilter, ImageEnhance
 import ultrasonic
 import reflectance_sensors
 import camera
-from imager3 import find_color
+from imager3 import find_color, Imager
 
 class Sensor:
     @staticmethod
@@ -75,4 +75,7 @@ class CameraSensob(Sensob):
 
     def process(self, values):
         return find_color(values[0], 10, 20, "r")
+
+    def save_image(self):
+        Imager(image=self.values[0]).dump_image("ISEERED.png")
 

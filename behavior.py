@@ -90,24 +90,30 @@ class DetectRed(Behavior):
         red_array = self.senob.get_values()
         print(self.senob.get_values())
         intensity = red_array[1]
-        if (-1 <= red_array[0] < -0.6) and intensity >= 50:
+        if (-1 <= red_array[0] < -0.6) and intensity >= 85:
             self.motor_recommendation = "L60"
             self.match_degree = intensity/121
+            self.senob.save_image()
 
         elif (-0.6 <= red_array[0] <= -0.2) and intensity >= 85:
             self.motor_recommendation = "L30"
             self.match_degree = intensity/121
+            self.senob.save_image()
 
         elif (0.6 < red_array[0] <= 1) and intensity >= 85:
             self.motor_recommendation = "R60"
             self.match_degree = intensity/121
+            self.senob.save_image()
 
         elif (0.2 <= red_array[0] < 0.6) and intensity >= 85:
             self.motor_recommendation = "R30"
             self.match_degree = intensity/121
+            self.senob.save_image()
+
         elif (-0.2 < red_array[0] < 0.2) and intensity >= 85:
             self.motor_recommendation = "Forward"
             self.match_degree = intensity/121
+            self.senob.save_image()
 
         else:
             self.match_degree = 0
