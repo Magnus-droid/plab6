@@ -32,7 +32,7 @@ class Camera:
         #self.sensor_get_value()
         #self.s.send(b'snap')
         #self.value = Image.open('image.png').convert('RGB')
-        self.value = sensor_get_value()
+        self.value = self.sensor_get_value()
         return self.value
 
     def reset(self):
