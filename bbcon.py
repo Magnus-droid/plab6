@@ -5,6 +5,7 @@ from arbitrator import Arbitrator
 from time import sleep
 import behavior
 from motors import Motors
+from robodemo import dancer
 
 
 class Bbcon:
@@ -71,6 +72,7 @@ def run():
     bbcon.add_behavior(behav2)
     bbcon.add_behavior(behav3)
     bbcon.add_motob(motob)
+    motor.backward(.2,3)
     bbcon.run_one_timestep()
 
 
