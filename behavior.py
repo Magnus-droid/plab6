@@ -48,7 +48,6 @@ class AvoidCollsion(Behavior):
     def sense_and_act(self):
         """Caluclate match degree_based, motor requests (and halt requests) on distance"""
         distance = self.senob.get_values()[0]
-        print(self.senob.get_values())
         if distance >= 50:                  # Decide later
             self.motor_recommendation = "Forward"
             self.match_degree = 0.01
@@ -89,7 +88,6 @@ class DetectRed(Behavior):
     def sense_and_act(self):
         """Look for red"""
         red_array = self.senob.get_values()
-        print(self.senob.get_values())
         intensity = red_array[1]
         if (-1 <= red_array[0] < -0.6) and intensity >= 85:
             self.motor_recommendation = "L60"
