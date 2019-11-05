@@ -72,10 +72,12 @@ class CameraSensob(Sensob):
     def __init__(self):
         cam = camera.Camera()
         super().__init__([cam])
+        self.image=None
 
     def process(self, values):
+        self.image=values[0]
         return find_color(values[0], 10, 20, "r")
 
     def save_image(self):
-        Imager(image=self.values[0]).dump_image("ISEERED.png")
+        Imager(image=self.image).dump_image("ISEERED.png")
 
