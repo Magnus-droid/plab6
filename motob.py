@@ -23,25 +23,15 @@ class Motob:
             self.motor.set_value((0.25, 1))
         elif self.value[0] == "L30":
             self.motor.set_value((0.5, 1))
-        elif self.value[0] == "Same":
+        elif self.value[0] == "Forward":
             self.motor.forward(0.5)
-        elif self.value[0] == "Halt":   # Change
-            self.halt_and_change()
+        elif self.value[0] == "Backoff":   # Change
+            self.motor.set_value((-1, -1), 0.5)
+        elif self.value[0] == "Turn":
+            self.motor.set_value((1, -1), 0.5)
         else:
             self.motor.stop()
 
 
-
-
-    #def stay_same(self):
-     #   if self.prev is None:
-      #      self.motor.forward(1)
-      #  else:
-       #     self.value = self.prev
-        #    self.operationsalize()
-
-    def halt_and_change(self):
-        self.motor.backward(0.5, 1)
-        self.motor.set_value((1, -1), 0.25)
 
 
