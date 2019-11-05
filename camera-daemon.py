@@ -21,11 +21,11 @@ def handle(clientsocket):
 		buf = clientsocket.recv(MAX_LENGTH)
 		print("Buf: ", buf)
 		# Receive the SNAP command. Take a picture with PiCam.
-		if buf == 'snap':
+		if buf == b'snap':
 			print("taking picture :)")
 			camera.capture('/home/plab/plab6/image.png')
 			
-		if buf == 'ack':
+		if buf == b'ack':
 			print("houston we have connection")
 
 		if len(buf) == 0:
