@@ -9,7 +9,8 @@ class Motob:
     def __init__(self, motor):
         self.motor = motor
         self.value = None
-        self.instructions =  {"R60": (0.4, -0.4), "R30": (0.2, -0.2), "L60": (-0.4, 0.4), "L30": (-0.2, 0.2), "Backoff": (-0.3, -0.3), "Forward": (0.3, 0.3), "Turn": (0.5, -0.5)}
+        self.instructions = {"R60": (0.4, -0.4), "R30": (0.2, -0.2), "L60": (-0.4, 0.4),
+                             "L30": (-0.2, 0.2), "Backoff": (-0.3, -0.3), "Forward": (0.3, 0.3), "Turn": (0.5, -0.5)}
 
     def update(self, recommendation):
         self.value = recommendation
@@ -39,7 +40,7 @@ class Motob:
         else:
             self.motor.stop()
         """
-        self.motor.set_value(self.instructions[self.value])
+        self.motor.set_value(self.instructions[self.value[0]])
 
 
 
