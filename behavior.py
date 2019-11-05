@@ -55,7 +55,7 @@ class AvoidCollsion(Behavior):
             self.motor_recommendation = "Same"
             self.match_degree = 1-(distance/50)
         else:
-            self.motor_recommendation = "Halt"
+            self.motor_recommendation = "Halt (too close)"
             self.match_degree = 1
 
 
@@ -69,7 +69,7 @@ class LineDetection(Behavior):
         """Don't drive across white lines"""
         white = self.senob.get_values()[0]
         if white:
-            self.motor_recommendation = "Halt"
+            self.motor_recommendation = "Halt (on a line)"
             self.match_degree = 1
         else:
             self.motor_recommendation = "Same"
