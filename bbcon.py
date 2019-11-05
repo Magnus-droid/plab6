@@ -1,18 +1,19 @@
-from sensob import Sensob
+"""?"""
+import sensob
 from motob import Motob
-import arbitrator
-
+from arbitrator import Arbitrator
+from time import sleep
+import behavior
+from motors import Motors
+from zumo_button import ZumoButton
 
 class Bbcon:
-
     """INIT"""
-
-    def __int__(self):
+    def __init__(self):
         self.behaviors = []
         self.active_behaviors = []
         self.sensobs = []
-        self.metobs = []
-        self.arbitrator = None
+        self.motobs = []
         self.halt = False
 
     def add_behavior(self, bhv):
@@ -23,21 +24,58 @@ class Bbcon:
         """Legger til sensor observatør til"""
         self.sensobs.append(sensob)
 
+    def add_motob(self, motob):
+        """Legger til motob i motobs"""
+        self.motobs.append(motob)
+
     def activate_behavior(self, bhv):
+        """Activate a behavior of choice"""
         if bhv in self.behaviors and bhv not in self.active_behaviors:
             self.active_behaviors.append(bhv)
 
     def deactive_behavior(self, bhv):
+        """Deactivate a behavior of choice"""
         if bhv in self.active_behaviors:
             self.active_behaviors.remove(bhv)
 
     def run_one_timestep(self):
-        """Oppsett av metoder"""
+        """Tick. Updates the sensobs, behaviors, motobs, arbitrator and resets sensobs at last"""
+        arbi = Arbitrator()
         for sensob in self.sensobs:
             sensob.update()
-        for behavior in self.active_behaviors:
+        for behavior in self.behaviors:
             behavior.update()
+        for motob in self.motobs:
+            x = arbi.choose_action(self.behaviors)
+            print("Motor recommend: ", x)
+            motob.update(x)
+            sleep(0.1)
 
 
-    while True:
-        run_one_timestep()
+def run():
+    """Starting up the robot"""
+    print("Running!")
+    bbcon = Bbcon()
+    sensob1 = sensob.DistanceSensob()
+    sensob2 = sensob.ReflectanceSensob()
+    #sensob3 = sensob.CameraSensob()
+    behav1 = behavior.AvoidCollsion(sensob1)
+    behav2 = behavior.LineDetection(sensob2)
+    #behav3 = behavior.DetectRed(sensob3)
+    m = Motors()
+    m.setup()
+    ZumoButton().wait_for_press()
+    motob = Motob(m)
+    bbcon.add_sensob(sensob1)
+    bbcon.add_sensob(sensob2)
+    #bbcon.add_sensob(sensob3)
+    bbcon.add_behavior(behav1)
+    bbcon.add_behavior(behav2)
+    #bbcon.add_behavior(behav3)
+    bbcon.add_motob(motob)
+    for i in range(10):
+        bbcon.run_one_timestep()
+    m.stop()
+
+
+run()

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from time import sleep
 import RPi.GPIO as GPIO
-import wiringpi2 as wp
+import wiringpi as wp
 
 
 class Motors:
@@ -108,4 +108,3 @@ class Motors:
         if duration:
             sleep(duration)
             self.stop()
-
