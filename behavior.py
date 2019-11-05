@@ -51,7 +51,7 @@ class AvoidCollsion(Behavior):
         if distance >= 50:                  # Decide later
             self.motor_recommendation = "Same"
             self.match_degree = 0
-        elif 1 <= distance < 50:
+        elif 10 <= distance < 50:
             self.motor_recommendation = "Same"
             self.match_degree = 1-(distance/50)
         else:
