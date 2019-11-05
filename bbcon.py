@@ -49,7 +49,7 @@ class Bbcon:
             x = arbi.choose_action(self.behaviors)
             print("Motor recommend: ", x)
             motob.update(x)
-            sleep(0.2)
+            sleep(0.1)
 
 
 def run():
@@ -73,7 +73,7 @@ def run():
     bbcon.add_behavior(behav2)
     #bbcon.add_behavior(behav3)
     bbcon.add_motob(motob)
-    for i in range(5):
+    for i in range(10):
         bbcon.run_one_timestep()
     m.stop()
 
