@@ -13,5 +13,5 @@ class Arbitrator:
             else:
                 if behav.weight >= best_choice.weight:
                     best_choice = behav
-        print("Message: ", best_choice.message)
+        print("Message from behavior: ", best_choice.message)
         return best_choice.motor_recommendation, False

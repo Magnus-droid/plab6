@@ -15,6 +15,7 @@ class Motob:
         self.operationsalize()
 
     def operationsalize(self):
+        print("Tuple sent to motob: ", self.value)
         if self.value[0] == "R60":
             self.motor.set_value((1, 0.25))
         elif self.value[0] == "R30":
