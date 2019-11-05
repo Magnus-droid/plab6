@@ -14,7 +14,7 @@ class Camera:
         self.img_rot = img_rot
         
         subprocess.Popen(["python3", "camera-daemon.py"])
-        time.sleep(0.2) 
+        time.sleep(2) 
 
         HOST = '127.0.0.1'
         PORT = 10000
@@ -22,7 +22,6 @@ class Camera:
         self.s.connect((HOST, PORT))
         print("connected to camera daemon")
         self.s.send('ack')
-
 
     def get_value(self):  return self.value
 
