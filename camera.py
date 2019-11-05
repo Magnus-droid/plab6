@@ -17,7 +17,7 @@ class Camera:
         time.sleep(2) 
 
         HOST = '127.0.0.1'
-        PORT = 10001
+        PORT = 10000
         self.s = socket.socket()
         self.s.connect((HOST, PORT))
         print("connected to camera daemon")
