@@ -4,6 +4,7 @@ from motob import Motob
 from arbitrator import Arbitrator
 from time import sleep
 import behavior
+from motors import Motors
 
 
 class Bbcon:
@@ -61,7 +62,8 @@ def run():
     behav1 = behavior.AvoidCollsion(sensob1)
     behav2 = behavior.LineDetection(sensob2)
     behav3 = behavior.DetectRed(sensob3)
-    motob = Motob()
+    motor = Motors()
+    motob = Motob(motor)
     bbcon.add_sensob(sensob1)
     bbcon.add_sensob(sensob2)
     bbcon.add_sensob(sensob3)

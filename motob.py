@@ -6,8 +6,8 @@ import arbitrator
 class Motob:
     """Acts as interface between BBCON and motors """
 
-    def __init__(self):
-        self.motor = motors.Motors()
+    def __init__(self, motor):
+        self.motor = motor
         self.value = None
 
     def update(self, recommendation):
@@ -27,9 +27,9 @@ class Motob:
         elif self.value[0] == "Forward":
             self.motor.forward(0.5)
         elif self.value[0] == "Backoff":   # Change
-            self.motor.set_value((-1, -1), 0.5)
+            self.motor.set_value((-1, -1), dur=0.5)
         elif self.value[0] == "Turn":
-            self.motor.set_value((1, -1), 0.5)
+            self.motor.set_value((1, -1), dur=0.5)
         else:
             self.motor.stop()
 
