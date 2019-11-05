@@ -22,9 +22,8 @@ def handle(clientsocket):
 		
 		# Receive the SNAP command. Take a picture with PiCam.
 		if buf == 'snap':
-			start = time.time()
-			camera.capture('/home/plab/plab6/image.jpg')
-			finish = start - time.time()
+            print("taking picture :)")
+			camera.capture('/home/plab/plab6/image.png')
 			
 		if buf == 'ack':
 			print("houston we have connection")
