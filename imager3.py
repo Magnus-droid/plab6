@@ -123,7 +123,8 @@ color = 'g'
 
 def find_color(image, height, width, color):
 
-    processed_image = Imager(image=image).resize(width,height).map_color_wta()
+    processed_image = Imager(image=image).resize(width,height).map_color_wta(thresh=0.60)
+    # processed_image.dump_image('nice.png')
     array = numpy.asarray(processed_image.get_matrix())
     
     # isoler ut fargen vi er interessert i
@@ -137,11 +138,20 @@ def find_color(image, height, width, color):
     tmp = list(map(lambda a: sum(a)/height, tmp))
     tmp = numpy.transpose(tmp).tolist()
     
+    sum_of = sum(tmp)
+    if sum_of == 0:
+        return [0 for i in range(20)]
+        
     direction = sum([v*i for v, i in enumerate(tmp)])/sum(tmp)
     max_val = max(tmp)
     
     ## print(tmp)   
-    ## processed_image.dump_image('nice.png')
 
     return ((direction-width/2)/(width/2), max_val)
+"""
+red = Image.open("shirt.jpg")
+hand = Image.open("ISEERED.png")
+print(find_color(red, 10, 20, 'r'))
+print(find_color(hand, 10, 20, 'r'))
+"""
 
