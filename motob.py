@@ -10,8 +10,8 @@ class Motob:
         self.motor = motor
         self.value = None
         self.instructions = {"R60": (0.4, -0.4), "R30": (0.3, -0.3), "L60": (-0.4, 0.4),
-                             "L30": (-0.3, 0.3), "Backoff": (-0.4, -0.4),
-                             "Forward": (0.4, 0.4), "Turn": random.choice([(0.5, -0.5), (-0.5, 0.5)])}
+                             "L30": (-0.3, 0.3), "Backoff": (-0.5, -0.5),
+                             "Forward": (0.5, 0.5), "Turn": random.choice([(0.5, -0.5), (-0.5, 0.5)])}
 
     def update(self, recommendation):
         """Update the information for recommended action"""
