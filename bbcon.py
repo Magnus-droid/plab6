@@ -78,7 +78,6 @@ def run():
         bbcon.run_one_timestep()
         print("\n")
     m.stop()
-    sensob3.sensors[0].s.close()
 
 
 run()
