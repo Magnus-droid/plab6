@@ -34,5 +34,6 @@ class Motob:
             self.motor.stop()
 
 
+instructions = {"R60": (1, 0.25), "R30": (1, 0.5), "L60": (0.25, 1), "L30": (0.5, 1), "Backoff": (-1, -1)}
 
 
