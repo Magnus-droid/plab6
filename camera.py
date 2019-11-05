@@ -1,5 +1,9 @@
 import os
 from PIL import Image
+import socket
+import sys
+import subprocess
+import time
 
 class Camera:
 
@@ -8,11 +12,24 @@ class Camera:
         self.img_width = img_width
         self.img_height = img_height
         self.img_rot = img_rot
+        
+        subprocess.Popen(["python3", "camera-daemon.py"])
+        time.sleep(0.2) 
+
+        HOST = '127.0.0.1'
+        PORT = 10000
+        self.s = socket.socket()
+        self.s.connect((HOST, PORT))
+        print("connected to camera daemon")
+        self.s.send('ack')
+
 
     def get_value(self):  return self.value
 
     def update(self):
-        self.sensor_get_value()
+        #self.sensor_get_value()
+        self.s.send('snap')
+        self.value = Image.open('image.png').convert('RGB')
         return self.value
 
     def reset(self):
