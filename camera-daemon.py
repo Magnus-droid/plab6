@@ -27,10 +27,10 @@ def handle(clientsocket):
 			finish = start - time.time()
 			
 		if buf == 'ack':
-            print("houston we have connection")		
+			print("houston we have connection")
 
-		if len(buf) == 0: 
-            break
+		if len(buf) == 0:
+			break
 
 # Camera is always loaded here
 # The "magic" is in the camThread, this allows a picture to be captured, then it gracefully closed the camera connection and reopens it. This produces very fast captures (54ms vs 1.5s!)
