@@ -72,14 +72,6 @@ def run():
     bbcon.add_behavior(behav3)
     bbcon.add_motob(motob)
     ZumoButton().wait_for_press()
-    m = Motors()
-    m.forward(.2,3)
-    m.backward(.2,3)
-    m.right(.5,3)
-    m.left(.5,3)
-    m.backward(.3,2.5)
-    m.set_value([.5,.1],10)
-    m.set_value([-.5,-.1],10)
     bbcon.run_one_timestep()
 
 
