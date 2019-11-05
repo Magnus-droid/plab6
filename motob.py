@@ -17,19 +17,18 @@ class Motob:
     def operationsalize(self):
         print("Tuple sent to motob: ", self.value)
         if self.value[0] == "R60":
-            self.motor.set_value((1, 0.25))
+            self.motor.set_value((0.4, -0.4))
         elif self.value[0] == "R30":
-            self.motor.set_value((1, 0.5))
+            self.motor.set_value((0.2, -0.2))
         elif self.value[0] == "L60":
-            self.motor.set_value((0.25, 1))
+            self.motor.set_value((-0.4, 0.4))
         elif self.value[0] == "L30":
-            self.motor.set_value((0.5, 1))
+            self.motor.set_value((-0.2, 0.2))
         elif self.value[0] == "Forward":
-            self.motor.forward(.2)
+            self.motor.forward(.3)
         elif self.value[0] == "Backoff":   # Change
-            self.motor.backward(.2)
+            self.motor.backward(.3)
         elif self.value[0] == "Turn":
-            print("Halla! Vi er i turn")
             self.motor.set_value((0.5, -0.5))
 
         else:
