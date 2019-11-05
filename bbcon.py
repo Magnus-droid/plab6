@@ -64,7 +64,7 @@ def run():
     behav3 = behavior.DetectRed(sensob3)
     m = Motors()
     ZumoButton().wait_for_press()
-    m.forward(0.5, dur=0.5)
+    #m.forward(0.5, dur=0.5)
     motob = Motob(m)
     bbcon.add_sensob(sensob1)
     bbcon.add_sensob(sensob2)

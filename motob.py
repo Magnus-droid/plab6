@@ -35,8 +35,8 @@ class Motob:
             self.motor.right(.5,3)
             self.motor.left(.5,3)
             self.motor.backward(.3,2.5)
-            self.motor.set_value([.5,.1],10)
-            self.motor.set_value([-.5,-.1],10)
+            self.motor.set_value([.5,.1],1)
+            self.motor.set_value([-.5,-.1],1)
 
         else:
             self.motor.stop()
