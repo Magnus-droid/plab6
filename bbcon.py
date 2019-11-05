@@ -77,7 +77,9 @@ def run():
     bbcon.add_motob(motob)
     for i in range(10):
         bbcon.run_one_timestep()
+        print("\n")
     m.stop()
+
 
 
 run()

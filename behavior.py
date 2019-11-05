@@ -114,6 +114,7 @@ class DetectRed(Behavior):
             self.motor_recommendation = "Forward"
             self.match_degree = intensity/121
             self.senob.save_image()
+            self.message = "RED IN FRONT OF ME!!"
 
         else:
             self.match_degree = 0
