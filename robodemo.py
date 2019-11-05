@@ -19,13 +19,13 @@ def dancer():
     ZumoButton().wait_for_press()
     m = Motors()
     m.forward(.2,3)
-    m.backward(.2,3)
+    """m.backward(.2,3)
     m.right(.5,3)
     m.left(.5,3)
     m.backward(.3,2.5)
     m.set_value([.5,.1],1)
     m.set_value([-.5,-.1],1)
-
+"""
 """
 # This tests the UV (distance) sensors.  The robot moves forward to within 10 cm of the nearest obstacle.  It
 # then does a little dancing before backing up to approximately 50 cm from the nearest obstacle.
