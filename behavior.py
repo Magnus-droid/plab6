@@ -77,6 +77,7 @@ class LineDetection(Behavior):
         else:
             self.motor_recommendation = "Forward"
             self.match_degree = 0.01
+            self.message = "NOT ON A LINE"
 
 
 class DetectRed(Behavior):
