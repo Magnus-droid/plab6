@@ -1,26 +1,25 @@
 """Motob"""
-import motors
-import arbitrator
 
 
 class Motob:
     """Acts as interface between BBCON and motors """
 
     def __init__(self, motor):
+        """Set the motor and the instructions for it"""
         self.motor = motor
         self.value = None
         self.instructions = {"R60": (0.4, -0.4), "R30": (0.2, -0.2), "L60": (-0.4, 0.4),
-                             "L30": (-0.2, 0.2), "Backoff": (-0.3, -0.3), "Forward": (0.3, 0.3), "Turn": (0.5, -0.5)}
+                             "L30": (-0.2, 0.2), "Backoff": (-0.3, -0.3),
+                             "Forward": (0.3, 0.3), "Turn": (0.5, -0.5)}
 
     def update(self, recommendation):
+        """Update the information for recommended action"""
         self.value = recommendation
         self.operationsalize()
 
-
-
     def operationsalize(self):
+        """Gives motor the recommended value of choice"""
         print("Tuple sent to motob: ", self.value)
-
 
         """
         if self.value[0] == "R60":
@@ -41,6 +40,3 @@ class Motob:
             self.motor.stop()
         """
         self.motor.set_value(self.instructions[self.value[0]])
-
-
-
