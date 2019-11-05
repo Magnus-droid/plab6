@@ -4,7 +4,7 @@ from PIL import Image
 
 class Camera():
 
-    def __init__(self, img_width=128, img_height=96, img_rot=0):
+    def __init__(self, img_width=64, img_height=64, img_rot=0):
         self.value = None
         self.img_width = img_width
         self.img_height = img_height
@@ -28,4 +28,4 @@ class Camera():
 
 # Just testing the camera in python
 
-# os.system('raspistill -t 1 -o image.png -w "' + str(200) + '" -h "' + str(200) + '" -rot "' + str(0) + '"')
+os.system('raspistill -t 0.1 -o image.png -w "' + str(200) + '" -h "' + str(200) + '" -rot "' + str(0) + '"')
