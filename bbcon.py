@@ -63,6 +63,8 @@ def run():
     behav2 = behavior.LineDetection(sensob2)
     behav3 = behavior.DetectRed(sensob3)
     m = Motors()
+    ZumoButton().wait_for_press()
+    m.forward(0.5, dur=0.5)
     motob = Motob(m)
     bbcon.add_sensob(sensob1)
     bbcon.add_sensob(sensob2)
@@ -71,7 +73,7 @@ def run():
     bbcon.add_behavior(behav2)
     bbcon.add_behavior(behav3)
     bbcon.add_motob(motob)
-    ZumoButton().wait_for_press()
+
     bbcon.run_one_timestep()
 
 
