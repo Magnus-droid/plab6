@@ -1,5 +1,4 @@
 """Motob"""
-import random
 
 
 class Motob:
@@ -11,7 +10,7 @@ class Motob:
         self.value = None
         self.instructions = {"R60": (0.9, -0.9), "R30": (0.5, -0.5), "L60": (-0.9, 0.9),
                              "L30": (-0.5, 0.5), "Backoff": (-0.4, -0.4),
-                             "Forward": (0.4, 0.4), "Turn": random.choice([(1, -1), (-1, 1)])}
+                             "Forward": (0.4, 0.4), "Turn": (1, -1)}
     #test
     def update(self, recommendation):
         """Update the information for recommended action"""
