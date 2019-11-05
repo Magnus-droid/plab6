@@ -12,6 +12,8 @@ class Arbitrator:
                 return "Stop", True
             if behav.weight >= best_choice.weight:
                 best_choice = behav
+            print("Match degree: ", behav.name, " ", behav.weight)
         print("Message from behavior: ", best_choice.message)
         print("Name of behaviour: ", best_choice.name)
         return best_choice.motor_recommendation, False
+#test
