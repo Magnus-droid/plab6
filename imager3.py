@@ -123,7 +123,7 @@ color = 'g'
 
 def find_color(image, height, width, color):
 
-    processed_image = Imager(image=image).resize(width,height).map_color_wta(thresh=0.60)
+    processed_image = Imager(image=image).resize(width,height).map_color_wta(thresh=0.50)
     # processed_image.dump_image('nice.png')
     array = numpy.asarray(processed_image.get_matrix())
     
