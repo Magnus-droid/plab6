@@ -137,12 +137,7 @@ def find_color(image, height, width, color):
     tmp = numpy.transpose(tmp)
     tmp = list(map(lambda a: sum(a)/height, tmp))
     tmp = numpy.transpose(tmp).tolist()
-    
 
-    direction = sum([v*i for v, i in enumerate(tmp)])/sum(tmp)
-    max_val = max(tmp)
-    
-    ## print(tmp)   
 
     epic_sum = sum(tmp)
 
