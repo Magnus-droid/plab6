@@ -23,7 +23,7 @@ def handle(clientsocket):
 		# Receive the SNAP command. Take a picture with PiCam.
 		if buf == 'snap':
 			start = time.time()
-			camera.capture('/home/pi/plab/plab6/image.jpg')
+			camera.capture('/home/plab/plab6/image.jpg')
 			finish = start - time.time()
 			
 		if buf == 'ack':
