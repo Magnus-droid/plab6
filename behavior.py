@@ -51,7 +51,7 @@ class AvoidCollsion(Behavior):
         print(self.senob.get_values())
         if distance >= 50:                  # Decide later
             self.motor_recommendation = "Forward"
-            self.match_degree = 0
+            self.match_degree = 0.01
         elif 10 <= distance < 50:
             self.motor_recommendation = "Forward"
             self.match_degree = 1-(distance/50)
@@ -76,7 +76,7 @@ class LineDetection(Behavior):
             self.message = "ON A LINE"
         else:
             self.motor_recommendation = "Forward"
-            self.match_degree = 0
+            self.match_degree = 0.01
 
 
 class DetectRed(Behavior):
@@ -117,7 +117,7 @@ class DetectRed(Behavior):
             self.message = "RED IN FRONT OF ME!!"
 
         else:
-            self.match_degree = 0
+            self.match_degree = 0.01
 
 
 
