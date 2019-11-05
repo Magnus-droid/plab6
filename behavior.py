@@ -64,7 +64,7 @@ class LineDetection(Behavior):
     """Detects white lines"""
 
     def __init__(self, sensob):
-        super().__init__(1, "LineDetection", sensob)
+        super().__init__(10, "LineDetection", sensob)
 
     def sense_and_act(self):
         """Don't drive across white lines"""
@@ -75,7 +75,7 @@ class LineDetection(Behavior):
             self.message = "ON A LINE"
         else:
             self.motor_recommendation = "Forward"
-            self.match_degree = 0.01
+            self.match_degree = 0.001
             self.message = "NOT ON A LINE"
 
 
