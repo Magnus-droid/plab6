@@ -25,9 +25,9 @@ class Motob:
         elif self.value[0] == "L30":
             self.motor.set_value((0.5, 1))
         elif self.value[0] == "Forward":
-            self.motor.forward(0.3, dur=0.5)
+            self.motor.forward(.3, 0.5)
         elif self.value[0] == "Backoff":   # Change
-            self.motor.backward(0.3, dur=0.5)
+            self.motor.backward(.3, 0.5)
         elif self.value[0] == "Turn":
             print("Halla! Vi er i turn")
             self.motor.right(.3,3)
