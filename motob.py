@@ -29,7 +29,7 @@ class Motob:
         elif self.value[0] == "Backoff":   # Change
             self.motor.set_value((-1, -1), dur=0.5)
         elif self.value[0] == "Turn":
-            self.motor.set_value((1, -1), dur=0.5)
+            self.motor.set_value((1, -1), dur=10)
         else:
             self.motor.stop()
 
