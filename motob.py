@@ -30,7 +30,7 @@ class Motob:
             self.motor.backward(.2)
         elif self.value[0] == "Turn":
             print("Halla! Vi er i turn")
-            self.motor.set_value((0.2, -0.2))
+            self.motor.set_value((0.5, -0.5))
 
         else:
             self.motor.stop()
