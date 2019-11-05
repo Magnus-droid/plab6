@@ -28,7 +28,7 @@ class Camera:
     def update(self):
         #self.sensor_get_value()
         self.s.send(str.encode('snap'))
-        self.value = Image.open('image.png').convert('RGB')
+        self.value = Image.open('image.jpg').convert('RGB')
         return self.value
 
     def reset(self):
