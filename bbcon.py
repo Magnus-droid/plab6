@@ -73,8 +73,8 @@ def run():
     bbcon.add_behavior(behav2)
     #bbcon.add_behavior(behav3)
     bbcon.add_motob(motob)
-
-    bbcon.run_one_timestep()
+    for i in range(5):
+        bbcon.run_one_timestep()
 
 
 run()
