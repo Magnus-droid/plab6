@@ -12,7 +12,7 @@ class Motob:
         self.instructions = {"R60": (0.4, -0.4), "R30": (0.3, -0.3), "L60": (-0.4, 0.4),
                              "L30": (-0.3, 0.3), "Backoff": (-0.5, -0.5),
                              "Forward": (0.5, 0.5), "Turn": random.choice([(1, -1), (-1, 1)])}
-
+    #test
     def update(self, recommendation):
         """Update the information for recommended action"""
         self.value = recommendation
