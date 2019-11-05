@@ -20,7 +20,7 @@ class Motob:
 
     def operationsalize(self):
         """Gives motor the recommended value of choice"""
-        print("Tuple sent to motob: ", self.value)
+        #print("Tuple sent to motob: ", self.value)
 
         """
         if self.value[0] == "R60":

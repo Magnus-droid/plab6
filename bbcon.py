@@ -49,7 +49,7 @@ class Bbcon:
             behavior.update()
         for motob in self.motobs:
             x = arbi.choose_action(self.behaviors)
-            print("Motor recommend: ", x)
+            #print("Motor recommend: ", x)
             motob.update(x)
 
 
