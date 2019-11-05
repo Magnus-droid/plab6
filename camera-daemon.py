@@ -7,7 +7,7 @@ import daemon.runner
 print("Camera daemon started")
 MAX_LENGTH = 50 # max length of any possible entry from "client"
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # setup socket
-PORT = 10000 # port 10000
+PORT = 9000 # port 10000
 HOST = '127.0.0.1' # runs on local host
 serversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) # this allows us to override port, prevents error
 serversocket.bind((HOST, PORT)) # lock server to this port and host
@@ -19,10 +19,10 @@ serversocket.listen(10) # max 10 clients
 def handle(clientsocket):
 	while 1:
 		buf = clientsocket.recv(MAX_LENGTH)
-		
+		print("Buf: ", buf)
 		# Receive the SNAP command. Take a picture with PiCam.
 		if buf == 'snap':
-            print("taking picture :)")
+			print("taking picture :)")
 			camera.capture('/home/plab/plab6/image.png')
 			
 		if buf == 'ack':
