@@ -51,7 +51,6 @@ class Bbcon:
             x = arbi.choose_action(self.behaviors)
             print("Motor recommend: ", x)
             motob.update(x)
-            sleep(0.1)
 
 
 def run():
@@ -60,24 +59,26 @@ def run():
     bbcon = Bbcon()
     sensob1 = sensob.DistanceSensob()
     sensob2 = sensob.ReflectanceSensob()
-    sensob3 = sensob.CameraSensob()
+    #sensob3 = sensob.CameraSensob()
     behav1 = behavior.AvoidCollsion(sensob1)
     behav2 = behavior.LineDetection(sensob2)
-    behav3 = behavior.DetectRed(sensob3)
+    #behav3 = behavior.DetectRed(sensob3)
     m = Motors()
     m.setup()
     ZumoButton().wait_for_press()
     motob = Motob(m)
     bbcon.add_sensob(sensob1)
     bbcon.add_sensob(sensob2)
-    bbcon.add_sensob(sensob3)
+    #bbcon.add_sensob(sensob3)
     bbcon.add_behavior(behav1)
     bbcon.add_behavior(behav2)
-    bbcon.add_behavior(behav3)
+    #bbcon.add_behavior(behav3)
     bbcon.add_motob(motob)
     for i in range(10):
         bbcon.run_one_timestep()
+        print("\n")
     m.stop()
+
 
 
 run()

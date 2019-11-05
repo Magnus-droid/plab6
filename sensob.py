@@ -49,7 +49,7 @@ class ReflectanceSensob(Sensob):
 
     def process(self, values):
         for value in values[0][0:5]:
-            if value > 0.8:  # if white line
+            if value < 0.2:  # if white line
                 return [True]
         return [False]
 

@@ -123,7 +123,7 @@ color = 'g'
 
 def find_color(image, height, width, color):
 
-    processed_image = Imager(image=image).resize(width,height).map_color_wta(thresh=0.60)
+    processed_image = Imager(image=image).resize(width,height).map_color_wta(thresh=0.50)
     # processed_image.dump_image('nice.png')
     array = numpy.asarray(processed_image.get_matrix())
     
@@ -137,20 +137,12 @@ def find_color(image, height, width, color):
     tmp = numpy.transpose(tmp)
     tmp = list(map(lambda a: sum(a)/height, tmp))
     tmp = numpy.transpose(tmp).tolist()
-    
-    sum_of = sum(tmp)
-    if sum_of == 0:
-        return [0 for i in range(20)]
-        
-    direction = sum([v*i for v, i in enumerate(tmp)])/sum(tmp)
-    max_val = max(tmp)
-    
-    ## print(tmp)   
+
 
     epic_sum = sum(tmp)
 
     if epic_sum == 0:
-        return [0 for i in range(width)]
+        return (0,0)
    
     direction = sum([v*i for v, i in enumerate(tmp)])/epic_sum
     max_val = max(tmp)

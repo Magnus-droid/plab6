@@ -51,7 +51,7 @@ class AvoidCollsion(Behavior):
         print(self.senob.get_values())
         if distance >= 50:                  # Decide later
             self.motor_recommendation = "Forward"
-            self.match_degree = 0
+            self.match_degree = 0.01
         elif 10 <= distance < 50:
             self.motor_recommendation = "Forward"
             self.match_degree = 1-(distance/50)
@@ -69,14 +69,14 @@ class LineDetection(Behavior):
 
     def sense_and_act(self):
         """Don't drive across white lines"""
-        white = self.senob.get_values()[0]
-        if white:
+        black = self.senob.get_values()[0]
+        if black:
             self.motor_recommendation = "Backoff"
             self.match_degree = 1
             self.message = "ON A LINE"
         else:
             self.motor_recommendation = "Forward"
-            self.match_degree = 0
+            self.match_degree = 0.01
 
 
 class DetectRed(Behavior):
@@ -114,9 +114,10 @@ class DetectRed(Behavior):
             self.motor_recommendation = "Forward"
             self.match_degree = intensity/121
             self.senob.save_image()
+            self.message = "RED IN FRONT OF ME!!"
 
         else:
-            self.match_degree = 0
+            self.match_degree = 0.01
 
 
 
