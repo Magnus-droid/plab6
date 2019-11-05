@@ -143,9 +143,5 @@ def find_color(image, height, width, color):
         return [0 for i in range(width)]
     direction = sum([v*i for v, i in enumerate(tmp)])/epic_sum
     max_val = max(tmp)
-    
-    ## print(tmp)   
-    ## processed_image.dump_image('nice.png')
-
     return ((direction-width/2)/(width/2), max_val)
 
