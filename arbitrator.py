@@ -10,8 +10,7 @@ class Arbitrator:
         for behav in behaviors:
             if behav.halt_request:
                 return "Stop", True
-            else:
-                if behav.weight >= best_choice.weight:
-                    best_choice = behav
+            if behav.weight >= best_choice.weight:
+                best_choice = behav
         print("Message from behavior: ", best_choice.message)
         return best_choice.motor_recommendation, False

@@ -7,8 +7,10 @@ import behavior
 from motors import Motors
 from zumo_button import ZumoButton
 
+
 class Bbcon:
     """INIT"""
+
     def __init__(self):
         self.behaviors = []
         self.active_behaviors = []

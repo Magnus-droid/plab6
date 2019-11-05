@@ -147,6 +147,13 @@ def find_color(image, height, width, color):
     
     ## print(tmp)   
 
+    epic_sum = sum(tmp)
+
+    if epic_sum == 0:
+        return [0 for i in range(width)]
+   
+    direction = sum([v*i for v, i in enumerate(tmp)])/epic_sum
+    max_val = max(tmp)
     return ((direction-width/2)/(width/2), max_val)
 """
 red = Image.open("shirt.jpg")
