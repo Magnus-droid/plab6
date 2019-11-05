@@ -6,8 +6,8 @@ import arbitrator
 class Motob:
     """Acts as interface between BBCON and motors """
 
-    def __init__(self):
-        self.motor = motors.Motors()
+    def __init__(self, motor):
+        self.motor = motor
         self.value = None
 
     def update(self, recommendation):
@@ -15,6 +15,7 @@ class Motob:
         self.operationsalize()
 
     def operationsalize(self):
+        print("Tuple sent to motob: ", self.value)
         if self.value[0] == "R60":
             self.motor.set_value((1, 0.25))
         elif self.value[0] == "R30":
@@ -23,25 +24,18 @@ class Motob:
             self.motor.set_value((0.25, 1))
         elif self.value[0] == "L30":
             self.motor.set_value((0.5, 1))
-        elif self.value[0] == "Same":
-            self.motor.forward(0.5)
-        elif self.value[0] == "Halt":   # Change
-            self.halt_and_change()
+        elif self.value[0] == "Forward":
+            self.motor.forward(.5)
+        elif self.value[0] == "Backoff":   # Change
+            self.motor.backward(.5)
+        elif self.value[0] == "Turn":
+            print("Halla! Vi er i turn")
+            self.motor.right(.5)
+
         else:
             self.motor.stop()
 
 
-
-
-    #def stay_same(self):
-     #   if self.prev is None:
-      #      self.motor.forward(1)
-      #  else:
-       #     self.value = self.prev
-        #    self.operationsalize()
-
-    def halt_and_change(self):
-        self.motor.backward(0.5, 1)
-        self.motor.set_value((1, -1), 0.25)
+instructions = {"R60": (1, 0.25), "R30": (1, 0.5), "L60": (0.25, 1), "L30": (0.5, 1), "Backoff": (-1, -1)}
 
 

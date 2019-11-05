@@ -15,6 +15,7 @@ class Behavior:
         self.match_degree = 0
         self.weight = 0
         self.name = name
+        self.message = ""
 
     def consider_deactivation(self):
         """Check if a behaviour should deactivate"""
@@ -47,15 +48,17 @@ class AvoidCollsion(Behavior):
     def sense_and_act(self):
         """Caluclate match degree_based, motor requests (and halt requests) on distance"""
         distance = self.senob.get_values()[0]
+        print(self.senob.get_values())
         if distance >= 50:                  # Decide later
-            self.motor_recommendation = "Same"
+            self.motor_recommendation = "Forward"
             self.match_degree = 0
-        elif 1 <= distance < 50:
-            self.motor_recommendation = "Same"
+        elif 10 <= distance < 50:
+            self.motor_recommendation = "Forward"
             self.match_degree = 1-(distance/50)
         else:
-            self.motor_recommendation = "Halt"
+            self.motor_recommendation = "Turn"
             self.match_degree = 1
+            self.message = "TOO CLOSE"
 
 
 class LineDetection(Behavior):
@@ -68,10 +71,11 @@ class LineDetection(Behavior):
         """Don't drive across white lines"""
         white = self.senob.get_values()[0]
         if white:
-            self.motor_recommendation = "Halt"
+            self.motor_recommendation = "Backoff"
             self.match_degree = 1
+            self.message = "ON A LINE"
         else:
-            self.motor_recommendation = "Same"
+            self.motor_recommendation = "Forward"
             self.match_degree = 0
 
 
@@ -102,7 +106,7 @@ class DetectRed(Behavior):
             self.motor_recommendation = "R30"
             self.match_degree = intensity/121
         elif (-0.2 < red_array[0] < 0.2) and intensity >= 50:
-            self.motor_recommendation = "Same"
+            self.motor_recommendation = "Forward"
             self.match_degree = intensity/121
 
 

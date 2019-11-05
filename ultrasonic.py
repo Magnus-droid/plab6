@@ -15,7 +15,11 @@ class Ultrasonic():
     def get_value(self): return self.value
 
     def update(self):
-        self.value = self.sensor_get_value()
+        x = self.sensor_get_value()
+        print("X :", x)
+        self.value = x
+        print("SELF.VALUE: ", self.value)
+        return self.value       #Added this
 
     def reset(self):
         self.value = None

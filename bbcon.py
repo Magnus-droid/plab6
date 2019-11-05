@@ -1,10 +1,11 @@
 """?"""
 import sensob
-import motob
+from motob import Motob
 from arbitrator import Arbitrator
 from time import sleep
 import behavior
-
+from motors import Motors
+from zumo_button import ZumoButton
 
 class Bbcon:
     """INIT"""
@@ -22,6 +23,10 @@ class Bbcon:
     def add_sensob(self, sensob):
         """Legger til sensor observatør til"""
         self.sensobs.append(sensob)
+
+    def add_motob(self, motob):
+        """Legger til motob i motobs"""
+        self.motobs.append(motob)
 
     def activate_behavior(self, bhv):
         """Activate a behavior of choice"""
@@ -41,9 +46,10 @@ class Bbcon:
         for behavior in self.behaviors:
             behavior.update()
         for motob in self.motobs:
-            motob.update(arbi.choose_action(self.behaviors))
-            sleep(0.5)
-            #test
+            x = arbi.choose_action(self.behaviors)
+            print("Motor recommend: ", x)
+            motob.update(x)
+            sleep(0.2)
 
 
 def run():
@@ -52,17 +58,24 @@ def run():
     bbcon = Bbcon()
     sensob1 = sensob.DistanceSensob()
     sensob2 = sensob.ReflectanceSensob()
-    sensob3 = sensob.CameraSensob()
+    #sensob3 = sensob.CameraSensob()
     behav1 = behavior.AvoidCollsion(sensob1)
     behav2 = behavior.LineDetection(sensob2)
-    behav3 = behavior.DetectRed(sensob3)
+    #behav3 = behavior.DetectRed(sensob3)
+    m = Motors()
+    m.setup()
+    ZumoButton().wait_for_press()
+    motob = Motob(m)
     bbcon.add_sensob(sensob1)
     bbcon.add_sensob(sensob2)
-    bbcon.add_sensob(sensob3)
+    #bbcon.add_sensob(sensob3)
     bbcon.add_behavior(behav1)
     bbcon.add_behavior(behav2)
-    bbcon.add_behavior(behav3)
-    bbcon.run_one_timestep()
+    #bbcon.add_behavior(behav3)
+    bbcon.add_motob(motob)
+    for i in range(5):
+        bbcon.run_one_timestep()
+    m.stop()
 
 
 run()
